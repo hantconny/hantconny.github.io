@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 category : 简易教程
 tagline: 
 tags : [GitHub Pages, Jekyll, DISQUS, Windows 7]
