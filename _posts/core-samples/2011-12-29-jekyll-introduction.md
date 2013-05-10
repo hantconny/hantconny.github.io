@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Jekyll 简介
 category : 简易教程
 tagline: "Supporting tagline"
 tags : [Jekyll]
