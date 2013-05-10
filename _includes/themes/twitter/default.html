@@ -41,9 +41,9 @@
 
 <body>
   <!-- main container -->
-  <div id="main-container" class="container-fluid span12">
+  <div id="main-container" class="container-fluid">
     <!-- nav container -->
-    <div id="nav-container" class="container-fluid span12">
+    <div id="nav-container" class="container-fluid">
       <div class="row-fluid">
         <div class="navbar navbar-fixed-top navbar-inverse">
           <div class="navbar-inner">
@@ -59,14 +59,16 @@
     </div>
 
     <!-- content container -->
-    <div id="content-container" class="container-fluid span8 offset2">
+    <div id="content-container" class="container-fluid">
       <div class="row-fluid">
-        <div class="content">{{ content }}</div>
+        <div class="span8">
+          <div class="content">{{ content }}</div>
+        </div>
       </div>
     </div>
 
     <!-- foot container -->
-    <div id="foot-container" class="container-fluid span12">
+    <div id="foot-container" class="container-fluid">
       <div class="row-fluid">
         <footer>
           <p class="text-center">
