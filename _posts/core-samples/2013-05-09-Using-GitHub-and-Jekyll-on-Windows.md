@@ -22,11 +22,13 @@ tags : [GitHub, Jekyll, DISQUS]
 
 ###安装Jekyll
 
+
 ####Step One
 Jekyll的Blog上给出了一个在Windows平台使用Jekyll的[解决方案](http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html)
 - Ruby  2.0.0-p0
 - DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe（因为我的电脑是XP 32位的）
 - 其他的都没有安装
+
 
 ####Step Two
 这一步我觉得在Windows上没有那么繁琐。
@@ -36,6 +38,7 @@ Jekyll的Blog上给出了一个在Windows平台使用Jekyll的[解决方案](htt
 - git add .
 - git commit -m "initial load"
 - git push origin master
+
 
 ####Step Three
 去浏览器输入username.github.io看下效果
