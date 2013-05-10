@@ -69,14 +69,16 @@
 <body>
   <!-- main container -->
   <div id="main-container" class="container-fluid">
-    <div class="span10 offset1">
+    <div class="content">
       <div class="row-fluid text-center">
-        <img id="head-img" src="{{ ASSET_PATH }}/assets/themes/twitter/img/index.jpg" class="img-polaroid">
-        <a href="/archive.html" class="circle-wrapper">
-          <div class="circle">&nbsp;</div><div class="circle">&nbsp;</div><div class="circle">&nbsp;</div>
-        </a>
+        <div class="span12">
+          <img id="head-img" src="{{ ASSET_PATH }}/assets/themes/twitter/img/index.jpg" class="img-polaroid">
+          <a href="/archive.html" class="circle-wrapper">
+            <div class="circle">&nbsp;</div><div class="circle">&nbsp;</div><div class="circle">&nbsp;</div>
+          </a>
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
 
   {% include JB/analytics %}
