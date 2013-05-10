@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,51 +28,47 @@
 <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
 <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 <style>
-  #content-container{
-    background-color: white;
-    margin-bottom: 50px;
-    margin-top: 100px;
-    border-radius: 5px;
-  }
+  .circle-wrapper {
+  margin: 2em 0;
+  display: block; 
+}
+
+.circle-wrapper:hover .circle {
+    background-color: #333333; 
+}
+
+.circle {
+  display: inline-block;
+  margin-right: 3px;
+  width: 0.8em;
+  height: 0.8em;
+  line-height: 1;
+  background-color: #cccccc;
+  border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  -webkit-border-radius: 0.4em;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear; 
+}
+#content-container{
+  background-color: white;
+  margin-bottom: 50px;
+  margin-top: 100px;
+  border-radius: 5px;
+}
 </style>
 </head>
 
 <body>
   <!-- main container -->
   <div id="main-container" class="container-fluid span10">
-    <!-- nav container -->
-    <div id="nav-container" class="container-fluid span12">
-      <div class="row-fluid">
-        <div class="navbar navbar-fixed-top navbar-inverse">
-          <div class="navbar-inner">
-            <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
-            <ul class="nav">
-              {% assign pages_list = site.pages %}
-              {% assign group = 'navigation' %}
-              {% include JB/pages_list %}
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div class="hero-unit">
+      <h1><a title="{{ site.title }}" class="" href="/">{{ site.title }}</a></h1>
     </div>
-
-    <!-- content container -->
-    <div id="content-container" class="container-fluid span12">
-      <div class="row-fluid">
-        <div class="content">{{ content }}</div>
-      </div>
-    </div>
-
-    <!-- foot container -->
-    <div id="foot-container" class="container-fluid span12">
-      <div class="row-fluid">
-        <footer>
-          <p class="text-center">
-            <small>Powered by <a href="http://jekyllbootstrap.com" title="The Definitive Jekyll Blogging Framework">Jekyll</a> and <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> | Copyright {{ site.time | date: '%Y' }} {{ site.author.name }} All rights reserved.
-            </small>
-          </p>
-        </footer>
-      </div>
+    <div class="text-center">
+      <a href="/archive.html" class="circle-wrapper">
+        <div class="circle">&nbsp;</div><div class="circle">&nbsp;</div><div class="circle">&nbsp;</div>
+      </a>
     </div>
   </div>
 

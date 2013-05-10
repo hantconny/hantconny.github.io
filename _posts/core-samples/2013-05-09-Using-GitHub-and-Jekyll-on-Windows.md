@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 在Windows上使用GitHub和Jekyll搭建博客
-category : 简易教程
-tags : [GitHub Pages, Jekyll, DISQUS, Windows 7]
+category : Tutorial
+tags : [GitHub, Jekyll, DISQUS]
 ---
 
 {% include JB/setup %}
