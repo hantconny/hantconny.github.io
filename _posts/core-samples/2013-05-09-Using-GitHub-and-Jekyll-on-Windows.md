@@ -6,44 +6,56 @@ tags : [GitHub, Jekyll, DISQUS]
 ---
 
 {% include JB/setup %}
-##安装GitHub Windows
+###安装GitHub for Windows
 
-[下载](http://windows.github.com/)
 
-##使用Pages
-以前是username/username.github.com，现在是username/username.github.io。
-具体说明参阅[这里](https://help.github.com/articles/user-organization-and-project-pages#user--organization-pages)
+可以直接从GitHub[下载](http://windows.github.com/)
 
-##安装Jekyll
-###第一步 
-看[这里](http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html)
-ruby我装的2.0.0
-devkit的下载网站和ruby一样
-python以下的暂时没装
 
-###第二步
-我觉得可以先clone自己的username/username.github.io到本地
-然后直接去github上把jekyll下下来解压到本地的username.github.io里面
-然后
-git add .
-git commit -m "initial commit"
-git push origin master
 
-###第3步
+###使用Pages
+
+
+新建一个Repository，并将该Repository命名为username/username.github.io。这一点可以参考GitHub关于Pages的说明。需要注意的是：以前使用Pages，新建的Repository名称是username/username.github.com，而现在是username/username.github.io。
+
+具体说明见[这里](https://help.github.com/articles/user-organization-and-project-pages#user--organization-pages)
+
+
+
+###安装Jekyll
+
+
+####Step One
+Jekyll的Blog上给出了一个在Windows平台使用Jekyll的[解决方案](http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html)
+- Ruby  2.0.0-p0
+- DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe（因为我的电脑是XP 32位的）
+- 其他的都没有安装
+
+
+####Step Two
+
+这一步我觉得在Windows上没有那么繁琐。
+- 先clone自己的username/username.github.io到本地（虽然里面没什么东西）
+- 然后直接去github上[下载]Jekyll Bootstrap，然后解压到本地的username.github.io里面。
+- 然后再Powershell（装好GitHub for Windows就有）里面操作
+- git add .
+- git commit -m "initial load"
+- git push origin master
+
+
+####Step Three
+
 去浏览器输入username.github.io看下效果
 
-##注册DISQUS
-[注册](http://disqus.com/)
-点Get This On your site
-生成shortname
-site url天username.github.io
-site name随意
-site shortname会根据site name生成，但是可以自己该，因为多半会已经被占用
-取消enable promoted discovery
-点右边的continue
-然后不记得了，好像是选universal code
+###注册DISQUS
 
-然后改你的_config.yml文件
+这一步相对简单，天朝骚年的英文水平对付这个注册肯定没有问题，所以简单点写。
+先去DISQUS[注册](http://disqus.com/)，点Get this on your site，然后生成shortname。
+- site url填username.github.io
+- site name随意
+- site shortname会根据site name生成，但是可以自己改，因为多半情况下是提示已经被占用
+- 取消enable promoted discovery
+- 然后改本地的username.github.io根目录下的_config.yml文件
 找到
 disqus :
-      short_name : 改成你自己的shortname == site shortname
+      short_name : 改成你自己的shortname（就是DISQUS生成的site shortname）
