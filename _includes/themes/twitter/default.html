@@ -49,8 +49,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span2"></div>
-		<div class="span8">
+		<div class="span10">
             <div class="content">
                 {{ content }}
             </div>
@@ -61,7 +60,15 @@
               </p>
             </footer>
 		</div>
-        <div class="span2"></div>
+        <div class="span2">
+		  <div class="tabbable tabs-right">
+			  <ul class="nav nav-tabs">
+				{% assign pages_list = site.pages %}
+				{% assign group = 'navigation' %}
+				{% include JB/pages_list %}
+			  </ul>
+		  </div>
+		</div>
       </div>
     </div>
     {% include JB/analytics %}
