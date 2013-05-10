@@ -48,20 +48,21 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span10">
+        <div class="span2"></div>
+		<div class="span8">
             <div class="content">
                 {{ content }}
             </div>
-	</div>
+			<hr>
+            <footer class="text-center">
+              <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
+                with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+                and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+              </p>
+            </footer>
+		</div>
         <div class="span2"></div>
-      </div>
-      <hr>
-      <footer class="text-centered">
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
-        </p>
-      </footer>
+	  </div>
     </div>
     {% include JB/analytics %}
   </body>
