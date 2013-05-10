@@ -25,8 +25,14 @@ tags : [GitHub, Jekyll, DISQUS]
 
 ####Step One
 Jekyll的Blog上给出了一个在Windows平台使用Jekyll的[解决方案](http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html)
-- Ruby  2.0.0-p0
-- DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe（因为我的电脑是XP 32位的）
+- Ruby 1.9.2-p290(XP-32) Ruby 2.0.0-p0(Win7-32)
+- DevKit DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe(XP-32) DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe(Win7-32)
+
+    cd D:\DevKit
+    ruby dk.rb init
+    ruby dk.rb install
+    gem install jekyll
+
 - 其他的都没有安装
 
 
@@ -54,3 +60,8 @@ Jekyll的Blog上给出了一个在Windows平台使用Jekyll的[解决方案](htt
 - site shortname会根据site name生成，但是可以自己改，因为多半情况下是提示已经被占用
 - 取消enable promoted discovery
 - 然后改本地的username.github.io根目录下的_config.yml文件，找到disqus : short_name，把short_name改成DISQUS生成的site shortname
+
+
+
+
+###解决Jekyll中文问题
