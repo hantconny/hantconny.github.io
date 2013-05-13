@@ -85,5 +85,11 @@
   </div>
 
   {% include JB/analytics %}
+  <!-- replace brand font -->
+  <script src="{{ ASSET_PATH }}/js/cufon-yui.js"></script>
+  <script src="{{ ASSET_PATH }}/js/Annabelle_400.font.js"></script>
+  <script>
+  Cufon.replace(".brand", {fontFamily : "Annabelle"});
+  </script>
 </body>
 </html>

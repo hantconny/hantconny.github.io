@@ -8,8 +8,9 @@
 
 <div class="row-fluid post-full">
   <div class="span12">
-    <div class="date text-right">
-      <span>{{ page.date | date_to_long_string }}</span>
+    <div class="text-right">
+      <!--<span>{{ page.date | date_to_long_string }}</span>-->
+      <span>{{ page.date | date:"%Y-%m-%d" }}</span>
     </div>
     <div class="content">
       {{ content }}
