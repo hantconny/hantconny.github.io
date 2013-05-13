@@ -13,7 +13,3 @@ A
 Mail
 
 > ![gmail](/assets/themes/twitter/img/gmail.gif)
-
-or Follow
-
-> [<p style="font-size: 14px;">me</p>](http://fanfou.com/hantconny)
