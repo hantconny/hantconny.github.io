@@ -3,7 +3,7 @@ layout: post
 title: 图片测试
 category : 
 tags : 
-description : Flickr测试
+description : bb
 ---
 {% include JB/setup %}
 ### Flickr测试 ###
