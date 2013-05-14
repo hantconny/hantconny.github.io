@@ -3,6 +3,7 @@ layout: post
 title: 在Windows上使用GitHub和Jekyll搭建博客
 category : Tutorial
 tags : [GitHub, Jekyll, DISQUS]
+description : 吊兰2
 ---
 {% include JB/setup %}
 ### 安装GitHub for Windows ###
