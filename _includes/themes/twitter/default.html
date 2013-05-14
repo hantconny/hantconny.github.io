@@ -115,12 +115,12 @@
   })();
   </script>
   <script>
-    var queryStr = $("#txt_query").val();
     $("#txt_query").keypress(function (e) {
 	  var key = e.which;
       if (key == 13) {
-        alert(queryStr);
-		window.location = "/search.html?query=" + queryStr;
+        var queryStr = $("#txt_query").val();
+		alert(queryStr);
+		window.location = "/hantconny.github.io/search.html?query=" + queryStr;
       }
     });
   </script>
