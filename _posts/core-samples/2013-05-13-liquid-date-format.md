@@ -3,7 +3,7 @@ layout: post
 title: Liquid日期格式
 category : Tutorial
 tags : [Liquid]
-description : 吊兰3
+description : 不是太喜欢archive.html页面里的时间戳，所以修改一下。
 ---
 {% include JB/setup %}
 不是太喜欢archive.html页面里的时间戳，所以修改一下。
