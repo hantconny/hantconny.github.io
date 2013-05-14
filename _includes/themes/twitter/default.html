@@ -13,11 +13,11 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<!-- Le styles -->
+<!-- styles -->
 <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-<!-- Le fav and touch icons -->
+<!-- fav and touch icons -->
 <link rel="shortcut icon" href="https://github.com/favicon.ico">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-144.png" />
@@ -25,6 +25,7 @@
 <!-- atom & rss feed -->
 <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
 <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+<!-- tapiro search -->
 <script src="{{ ASSET_PATH }}/js/jquery-1.6.1.min.js"></script>
 <script src="{{ ASSET_PATH }}/js/jquery-tapir.min.js"></script>
 <style>
@@ -46,83 +47,56 @@
   }
 </style>
 </head>
-
 <body>
-  <!-- main container -->
-  <!--<div id="main-container" class="container-fluid">-->
-    <!-- nav container -->
-    <!--<div id="nav-container" class="container-fluid">
-      <div class="row-fluid">-->
-        <div class="navbar navbar-fixed-top navbar-inverse">
-          <div class="navbar-inner">
-            <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
-            <ul class="nav">
-              {% assign pages_list = site.pages %}
-              {% assign group = 'navigation' %}
-              {% include JB/pages_list %}
-			  <li>
-                <form class="navbar-search">
-                  <input id="txt_query" type="text" class="search-query" placeholder="Google search">
-                </form>
-              </li>
-            </ul>
-          </div>
-        </div>
-      <!--</div>
-    </div>-->
-
-    <!-- content container -->
-    <!--<div id="content-container" class="container-fluid">
-      <div class="content">
-        <div class="span12">
-          <div class="row-fluid">-->
-            <div id="content-container" class="content">{{ content }}</div>
-          <!--</div>
-        </div>
-      </div>
-    </div>-->
-
-    <!-- foot container -->
-    <!--<div id="foot-container" class="container-fluid">-->
-      <footer>
-        <!--<div class="row-fluid">-->
-          <p class="text-center">
-            <small>Powered by <a href="http://jekyllbootstrap.com" title="The Definitive Jekyll Blogging Framework">Jekyll</a> and <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> | Copyright {{ site.time | date: '%Y' }} {{ site.author.name }} All rights reserved.
-            </small>
-          </p>
-        <!--</div>-->
-      </footer>
-    <!--</div>-->
+  <!-- nav container -->
+  <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+      <ul class="nav">
+      {% assign pages_list = site.pages %}
+      {% assign group = 'navigation' %}
+      {% include JB/pages_list %}
+        <li>
+          <form class="navbar-search" action="search.html" method="get">
+            <input name="query" type="text" class="search-query" placeholder="Google search">
+          </form>
+        </li>
+      </ul>
+    </div>
   </div>
 
+  <!-- content container -->
+  <div id="content-container" class="content">{{ content }}</div>
+
+  <!-- foot container -->
+  <footer>
+    <p class="text-center">
+      <small>Powered by <a href="http://jekyllbootstrap.com" title="The Definitive Jekyll Blogging Framework">Jekyll</a> and <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> | Copyright {{ site.time | date: '%Y' }} {{ site.author.name }} All rights reserved.
+      </small>
+    </p>
+  </footer>
+</div>
+
   {% include JB/analytics %}
+  
   <!-- replace brand font -->
   <script src="{{ ASSET_PATH }}/js/cufon-yui.js"></script>
   <script src="{{ ASSET_PATH }}/js/Annabelle_400.font.js"></script>
   <script>
-  Cufon.replace(".brand", {fontFamily : "Annabelle"});
-  Cufon.replace(".nav a", {fontFamily : "Annabelle"});
+    Cufon.replace(".brand", {fontFamily : "Annabelle"});
+    Cufon.replace(".nav a", {fontFamily : "Annabelle"});
   </script>
+  
   <!-- Google Analytics -->
   <script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-40876652-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  </script>
-  <script>
-    $("#txt_query").keypress(function (e) {
-	  var key = e.which;
-      if (key == 13) {
-        var queryStr = $("#txt_query").val();
-		alert(queryStr);
-		window.location = "search.html?query=" + queryStr;
-      }
-    });
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40876652-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
   </script>
 </body>
 </html>
