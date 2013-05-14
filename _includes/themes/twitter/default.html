@@ -25,6 +25,8 @@
 <!-- atom & rss feed -->
 <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
 <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+<script src="{{ ASSET_PATH }}/js/jquery-1.6.1.min.js"></script>
+<script src="{{ ASSET_PATH }}/js/jquery-tapir.min.js"></script>
 <style>
   #content-container{
     background-color: white;
@@ -58,6 +60,11 @@
               {% assign pages_list = site.pages %}
               {% assign group = 'navigation' %}
               {% include JB/pages_list %}
+			  <li>
+                <form class="navbar-search">
+                  <input id="txt_query" type="text" class="search-query" placeholder="Google search">
+                </form>
+              </li>
             </ul>
           </div>
         </div>
@@ -106,6 +113,16 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+  </script>
+  <script>
+    var queryStr = $("#txt_query").val();
+    $("#txt_query").keypress(function (e) {
+	  var key = e.which;
+      if (key == 13) {
+        alert(queryStr);
+		window.location = "/search.html?query=" + queryStr;
+      }
+    });
   </script>
 </body>
 </html>
