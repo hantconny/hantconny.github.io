@@ -54,7 +54,7 @@ Jekyll的Blog上给出了一个在Windows平台使用Jekyll的[解决方案](htt
 - 取消enable promoted discovery。
 - 然后改本地的`username.github.io`根目录下的`_config.yml`文件，找到`disqus : <short_name>`，改成DISQUS生成的site shortname即可。
 
-### 解决Jekyll中文问题 ###
+### 解决Jekyll中文Encoding问题 ###
 找到`<RUBY_PATH>\lib\ruby\gems\<RUBY_VERSION>\gems\jekyll-<VERSION>\lib\jekyll\convertible.rb`文件，把里面的`self.content = File.read(File.join(base, name))`
 换成
 `self.content = File.read(File.join(base, name), :encoding => "utf-8")`即可。
