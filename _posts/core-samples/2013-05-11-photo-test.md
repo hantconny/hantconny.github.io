@@ -3,7 +3,7 @@ layout: post
 title: 图片测试
 category : 
 tags : 
-description : bb
+description : 测试了Flickr的图片外链
 ---
 {% include JB/setup %}
 ### Flickr测试 ###

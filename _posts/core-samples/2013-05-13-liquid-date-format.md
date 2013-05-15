@@ -3,7 +3,7 @@ layout: post
 title: Liquid日期格式
 category : Tutorial
 tags : [Liquid]
-description : cc
+description : 调整了Jekyll里面的Liquid时间戳，并且小小探究了如何在转义Liquid代码
 ---
 {% include JB/setup %}
 不是太喜欢archive.html页面里的时间戳，所以修改一下。

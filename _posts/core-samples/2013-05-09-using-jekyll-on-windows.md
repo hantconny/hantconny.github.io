@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 在Windows上使用GitHub和Jekyll搭建博客
+title: 在Windows上搭建Jekyll博客环境
 category : Tutorial
 tags : [GitHub, Jekyll, DISQUS]
-description : aa
+description : 记录了如何在Windows上搭建Jekyll环境
 ---
 {% include JB/setup %}
 ### 安装GitHub for Windows ###
