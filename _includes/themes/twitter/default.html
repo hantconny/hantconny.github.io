@@ -49,6 +49,16 @@
   small{
     color: #aaa;
   }
+  #toTop {
+    width: 50px;
+    height: 50px;
+    background: #fff url(http://img02.taobaocdn.com/imgextra/i2/45631983/T2nxq5XhXXXXXXXXXX_!!45631983.png);
+    position: fixed;
+    left: 95%;
+    bottom: 50px;
+    cursor: pointer;
+    display: none;
+  }
 </style>
 </head>
 <body>
@@ -79,6 +89,22 @@
       </small>
     </p>
   </footer>
+  
+  <div id="toTop"></div>
+  <script type="text/javascript">
+  $(function() {
+    $(window).scroll(function() {
+      if($(this).scrollTop() != 0) {
+        $('#toTop').fadeIn();
+      } else {
+        $('#toTop').fadeOut();
+      }
+    });
+    $('#toTop').click(function() {
+      $('body, html').animate({scrollTop:0},500);
+    });
+  });
+  </script>
 
   {% include JB/analytics %}
   <!-- Google Analytics -->
