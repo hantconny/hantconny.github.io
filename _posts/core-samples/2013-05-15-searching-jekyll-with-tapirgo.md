@@ -11,7 +11,7 @@ description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
 
 在这里，仅仅是做一个备忘，并且总结一些错误。
 
-### 修改`atom.xml`文件 ###
+### 修改atom.xml文件 ###
 {% raw %}
     ---
     layout: nil
