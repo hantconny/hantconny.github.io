@@ -25,7 +25,14 @@
 <!-- atom & rss feed -->
 <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
 <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
-<!-- tapiro search -->
+<!-- replace brand font -->
+<script src="{{ ASSET_PATH }}/js/cufon-yui.js"></script>
+<script src="{{ ASSET_PATH }}/js/Annabelle_400.font.js"></script>
+<script>
+  Cufon.replace(".brand", {fontFamily : "Annabelle"});
+  Cufon.replace(".nav a", {fontFamily : "Annabelle"});
+</script>
+<!-- tapir search -->
 <script src="{{ ASSET_PATH }}/js/jquery-1.6.1.min.js"></script>
 <script src="{{ ASSET_PATH }}/js/jquery-tapir.min.js"></script>
 <style>
@@ -38,9 +45,6 @@
     width: 80%;
     margin-left: 10%;
 	border: 1px solid #ccc;
-  }
-  .brand{
-    font-family: sans-serif;
   }
   small{
     color: #aaa;
@@ -75,18 +79,8 @@
       </small>
     </p>
   </footer>
-</div>
 
   {% include JB/analytics %}
-  
-  <!-- replace brand font -->
-  <script src="{{ ASSET_PATH }}/js/cufon-yui.js"></script>
-  <script src="{{ ASSET_PATH }}/js/Annabelle_400.font.js"></script>
-  <script>
-    Cufon.replace(".brand", {fontFamily : "Annabelle"});
-    Cufon.replace(".nav a", {fontFamily : "Annabelle"});
-  </script>
-  
   <!-- Google Analytics -->
   <script>
     var _gaq = _gaq || [];
