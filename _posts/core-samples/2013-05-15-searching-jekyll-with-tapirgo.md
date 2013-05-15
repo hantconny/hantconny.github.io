@@ -12,7 +12,9 @@ description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
 在这里，仅仅是做一个备忘，并且总结一些错误。
 
 ### 修改atom.xml文件 ###
+
 {% raw %}
+
     ---
     layout: nil
     title : Atom Feed
@@ -42,10 +44,10 @@ description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
      {% endfor %}
      
     </feed>
+
 {% endraw %}
-以上是修改后的atom.xml文件的全文。与Out of the box的`atom.xml`文件唯一的区别在于，
-{% raw %}`<entry>`{% endraw %}
-节点的最后添加了一段：
+
+以上是修改后的atom.xml文件的全文。与Out of the box的`atom.xml`文件唯一的区别在于，`<entry>`节点的最后添加了一段：
 
 {% raw %}
 `<summary type="html">{{ post.description | xml_escape }}</summary>`
