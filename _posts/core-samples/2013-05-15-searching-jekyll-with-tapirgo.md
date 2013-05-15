@@ -81,7 +81,7 @@ description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
 点击那个大大的橘色按钮以后，会生成一个token和一个secret token。本文只会使用到token，所以暂时可以不用在意secret token。
 
 ### 加入Tapir ###
-Tapir的搜索用到了jQuery, 所以需要加入jQuery和一个处理Tapir搜索的js文件。修改`_includes\themes\twitter`目录下的`default.html`文件的`<head>`部分如下：
+Tapir的搜索用到了jQuery，所以需要加入jQuery和一个处理Tapir搜索的js文件。修改`_includes\themes\twitter`目录下的`default.html`文件的`<head>`部分如下：
 
 {% raw %}
 
@@ -139,4 +139,4 @@ PS：jQuery也可以使用CDN的地址，可以自行Google，但是鉴于国内
 
 需要关注的是jQuery选择的是ID为`search_results`的元素，这是`search.html`页面中用来摆放搜索结果的DIV的ID。另外，请自行替换token的值。
 
-现在搜索功能就已经完成了, 可以先在本地使用`$ jekyll serve`进行编译和预览，然后再提交到GitHub上。
+现在搜索功能就已经完成了，可以先在本地使用`$ jekyll serve`进行编译和预览，然后再提交到GitHub上。
