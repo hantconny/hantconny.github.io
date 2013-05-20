@@ -2,12 +2,12 @@
 layout: post
 title: Farewell Wedding
 category : 
-tags : 
+tags : Wedding
 description : Farewell Wedding
 ---
 {% include JB/setup %}
 
-大学同学结婚，从南京到常州，再从常州回南京。
+大学同学结婚，从南京到常州，再从常州回南京。这是毕业后参加的第三个婚礼，婚礼只能用盛大来形容。
 
 <br/>
 
@@ -17,4 +17,4 @@ description : Farewell Wedding
 
 <br/>
 
->四年前某个午后于江苏大阳台，那是一个晒着被子看着姑娘的年纪。
+>四年前某个午后于江苏大阳台，在一个晒着被子看着姑娘的年纪。
