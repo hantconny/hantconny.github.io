@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 在Windows上搭建Jekyll博客环境
-category : Tutorial
+category : 备忘
 tags : [GitHub, Jekyll, DISQUS]
 description : 记录了如何在Windows上搭建Jekyll环境
 ---

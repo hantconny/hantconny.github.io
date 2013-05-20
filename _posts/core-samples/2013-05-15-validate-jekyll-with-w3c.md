@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Jekyll页面的HTML验证
-category : Tutorial
+category : 备忘
 tags : [Jekyll]
 description : 记录Jekyll页面通过W3C验证需要注意的问题
 ---

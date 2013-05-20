@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用Tapir给Jekyll博客添加全文搜索
-category : Tutorial
+category : 备忘
 tags : [Tapir]
 description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
 ---

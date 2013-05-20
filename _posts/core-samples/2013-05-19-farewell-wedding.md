@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Farewell Wedding
-category : 
-tags : Wedding
+category : 杂记
+tags : [Wedding, Photographic]
 description : Farewell Wedding
 ---
 {% include JB/setup %}

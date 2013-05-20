@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Liquid日期格式
-category : Tutorial
+category : 备忘
 tags : [Liquid]
 description : 调整了Jekyll里面的Liquid时间戳，并且小小探究了如何在转义Liquid代码
 ---
