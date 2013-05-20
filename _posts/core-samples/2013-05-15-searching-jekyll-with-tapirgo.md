@@ -2,7 +2,7 @@
 layout: post
 title: 使用Tapir给Jekyll博客添加全文搜索
 category : Tutorial
-tags : [Tapirgo]
+tags : [Tapir]
 description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
 ---
 {% include JB/setup %}
@@ -47,7 +47,7 @@ description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
 
 {% endraw %}
 
-以上是修改后的atom.xml文件的全文。与Out of the box的`atom.xml`文件唯一的区别在于，`<entry>`节点的最后添加了一段：
+以上是修改后的`atom.xml`文件的全文。与Out of the box的`atom.xml`文件唯一的区别在于，`<entry>`节点的最后添加了一段：
 
 {% raw %}
 `<summary type="html">{{ post.description | xml_escape }}</summary>`
