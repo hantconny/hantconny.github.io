@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Will's thoughts</title>
+ <link href="http://hantconny.github.io/" rel="self"/>
+ <link href="http://hantconny.github.io"/>
+ <updated>2013-05-24T20:43:13+08:00</updated>
+ <id>http://hantconny.github.io</id>
+ <author>
+   <name>Will Cai</name>
+   <email>caizheng.c.z@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>The Poem</title>
+   <link href="http://hantconny.github.io/2013/05/24/ga-words"/>
+   <updated>2013-05-24T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/24/ga-words</id>
+   <content type="html">&lt;p&gt;The wind will hush&lt;/p&gt;&lt;p&gt;The clouds will part&lt;/p&gt;&lt;p&gt;The rain&lt;/p&gt;&lt;p&gt;will stop&lt;/p&gt;&lt;blockquote class='pull-right'&gt;
+  &lt;small&gt;&lt;cite title='Grey&amp;apos;s Anatomy S9E24'&gt;Grey's Anatomy S9E24&lt;/cite&gt;&lt;/small&gt;
+&lt;/blockquote&gt;</content>
+   <summary type="html">实习医生格蕾S9E24</summary>
+ </entry>
+ 
+ <entry>
+   <title>Farewell Wedding</title>
+   <link href="http://hantconny.github.io/2013/05/19/farewell-wedding"/>
+   <updated>2013-05-19T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/19/farewell-wedding</id>
+   <content type="html">&lt;p&gt;大学同学结婚，从南京到常州，再从常州回南京。这是毕业后参加的第三个婚礼，其本身也只能用盛大来形容。&lt;/p&gt;
+&lt;br /&gt;&lt;a href='http://www.flickr.com/photos/hantconny/4372543388/' title='Flickr 上 Will.Cai 的 000031'&gt;&lt;img alt='000031' height='345' src='http://farm5.staticflickr.com/4007/4372543388_2f9d260e0e.jpg' width='500' /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;blockquote&gt;
+&lt;p&gt;四年前某个午后于江苏大阳台，在一个晒着被子看着姑娘的年纪。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;PS:这次居然没有警察叔叔查我身份证。&lt;/p&gt;</content>
+   <summary type="html">Farewell Wedding</summary>
+ </entry>
+ 
+ <entry>
+   <title>Jekyll页面的HTML验证</title>
+   <link href="http://hantconny.github.io/2013/05/15/validate-jekyll-with-w3c"/>
+   <updated>2013-05-15T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/15/validate-jekyll-with-w3c</id>
+   <content type="html">&lt;p&gt;在使用Markdown写作时，使用如下语法是一件再平常不过的事情。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 一级标题 #
+## 二级标题 ##
+### 三级标题 ###
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是，如果我们在文章中使用了如下标题，就需要注意了，这样无法通过W3C的验证。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#### 安装Jekyll ####
+#### 解决Jekyll中文编码 ####
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其原因在于，当Markdown被解释后，生成了如下的HTML代码，很明显ID重复了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;h3 id=&amp;quot;jekyll&amp;quot;&amp;gt;安装Jekyll&amp;lt;/h3&amp;gt;
+&amp;lt;h3 id=&amp;quot;jekyll&amp;quot;&amp;gt;解决Jekyll中文编码&amp;lt;/h3&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是，以下情形Markdown却可以很好处理。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;### 我是标题 ###
+### 我也是标题 ###
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样的Markdown被解释后会生成类似如下的HTML代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;h3 id=&amp;quot;id1&amp;quot;&amp;gt;我是标题&amp;lt;/h3&amp;gt;
+&amp;lt;h3 id=&amp;quot;id2&amp;quot;&amp;gt;我也是标题&amp;lt;/h3&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所以，在使用Markdown写作时，如果某个标题中出现了英文单词，就要尽量避免在多个标题中出现相同的单词。&lt;/p&gt;
+
+&lt;p&gt;这对于经常写科技文的码农还真不是一个好消息。&lt;/p&gt;</content>
+   <summary type="html">记录Jekyll页面通过W3C验证需要注意的问题</summary>
+ </entry>
+ 
+ <entry>
+   <title>使用Tapir给Jekyll博客添加全文搜索</title>
+   <link href="http://hantconny.github.io/2013/05/15/searching-jekyll-with-tapirgo"/>
+   <updated>2013-05-15T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/15/searching-jekyll-with-tapirgo</id>
+   <content type="html">&lt;p&gt;这篇文章的产生，其实首先要感谢&lt;a href='http://www.shanhh.com/'&gt;Dan 单弘昊&lt;/a&gt;，请猛戳&lt;a href='http://www.shanhh.com/blog/2012/11/16/tapir-search-for-jekyll/'&gt;这里&lt;/a&gt;查看他写的《使用Tapir实现jekyll的站内搜索功能》。&lt;/p&gt;
+
+&lt;p&gt;在这里，仅仅是做一个备忘，并且总结一些错误。&lt;/p&gt;
+
+&lt;h3 id='atomxml'&gt;修改atom.xml文件&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: nil
+title : Atom Feed
+---
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;feed xmlns=&amp;quot;http://www.w3.org/2005/Atom&amp;quot;&amp;gt;
+ 
+ &amp;lt;title&amp;gt;{{ site.title }}&amp;lt;/title&amp;gt;
+ &amp;lt;link href=&amp;quot;{{ site.production_url }}/{{ site.atom_path }}&amp;quot; rel=&amp;quot;self&amp;quot;/&amp;gt;
+ &amp;lt;link href=&amp;quot;{{ site.production_url }}&amp;quot;/&amp;gt;
+ &amp;lt;updated&amp;gt;{{ site.time | date_to_xmlschema }}&amp;lt;/updated&amp;gt;
+ &amp;lt;id&amp;gt;{{ site.production_url }}&amp;lt;/id&amp;gt;
+ &amp;lt;author&amp;gt;
+   &amp;lt;name&amp;gt;{{ site.author.name }}&amp;lt;/name&amp;gt;
+   &amp;lt;email&amp;gt;{{ site.author.email }}&amp;lt;/email&amp;gt;
+ &amp;lt;/author&amp;gt;
+
+ {% for post in site.posts %}
+ &amp;lt;entry&amp;gt;
+   &amp;lt;title&amp;gt;{{ post.title }}&amp;lt;/title&amp;gt;
+   &amp;lt;link href=&amp;quot;{{ site.production_url }}{{ post.url }}&amp;quot;/&amp;gt;
+   &amp;lt;updated&amp;gt;{{ post.date | date_to_xmlschema }}&amp;lt;/updated&amp;gt;
+   &amp;lt;id&amp;gt;{{ site.production_url }}{{ post.id }}&amp;lt;/id&amp;gt;
+   &amp;lt;content type=&amp;quot;html&amp;quot;&amp;gt;{{ post.content | xml_escape }}&amp;lt;/content&amp;gt;
+   &amp;lt;summary type=&amp;quot;html&amp;quot;&amp;gt;{{ post.description | xml_escape }}&amp;lt;/summary&amp;gt;
+ &amp;lt;/entry&amp;gt;
+ {% endfor %}
+ 
+&amp;lt;/feed&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上是修改后的&lt;code&gt;atom.xml&lt;/code&gt;文件的全文。与Out of the box的&lt;code&gt;atom.xml&lt;/code&gt;文件唯一的区别在于，&lt;code&gt;&amp;lt;entry&amp;gt;&lt;/code&gt;节点的最后添加了一段：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;summary type=&amp;quot;html&amp;quot;&amp;gt;{{ post.description | xml_escape }}&amp;lt;/summary&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;添加这段内容的目的在于：搜索出的结果不会直接显示文章的全文，而是只显示文章的摘要。这么做有一点要求，那就是&lt;code&gt;_post&lt;/code&gt;目录下，每篇文章的YAML头部都必须包含有&lt;code&gt;description&lt;/code&gt;信息；否则在本地启动Jekyll进行预览时会报错，那么可想而知，在GitHub上也同样会报错。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: post
+title: 使用Tapir给Jekyll博客添加全文搜索
+category : Tutorial
+tags : [Tapirgo]
+description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
+---&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上是本文的YAML头部，给出以作说明。&lt;/p&gt;
+
+&lt;h3 id='github'&gt;提交更改到GitHub&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git add .
+$ git commit -m &amp;quot;modify atom.xml&amp;quot;
+$ git push origin master&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id='tapiratomxml'&gt;在Tapir注册atom.xml&lt;/h3&gt;
+
+&lt;p&gt;登入&lt;a href='http://tapirgo.com/'&gt;Tapir&lt;/a&gt;，并填入&lt;code&gt;atom.xml&lt;/code&gt;文件的位置和自己的邮箱，如下图&lt;/p&gt;
+&lt;a href='http://www.flickr.com/photos/hantconny/8739174883/' title='Flickr 上 Will.Cai 的 tapir'&gt;&lt;img alt='tapir' class='img-polaroid' height='408' src='http://farm8.staticflickr.com/7282/8739174883_7fc833d856.jpg' width='500' /&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;点击那个大大的橘色按钮以后，会生成一个token和一个secret token。本文只会使用到token，所以暂时可以不用在意secret token。&lt;/p&gt;
+
+&lt;h3 id='tapir'&gt;加入Tapir&lt;/h3&gt;
+
+&lt;p&gt;Tapir的搜索用到了jQuery，所以需要加入jQuery和一个处理Tapir搜索的js文件。修改&lt;code&gt;_includes\themes\twitter&lt;/code&gt;目录下的&lt;code&gt;default.html&lt;/code&gt;文件的&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;部分如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- tapiro search --&amp;gt;
+&amp;lt;script src=&amp;quot;{{ ASSET_PATH }}/js/jquery-1.6.1.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;{{ ASSET_PATH }}/js/jquery-tapir.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PS：jQuery也可以使用CDN的地址，可以自行Google，但是鉴于国内的环境，还是不要使用Google的CDN地址了。&lt;/p&gt;
+
+&lt;h3 id='id15'&gt;在导航条里加搜索框&lt;/h3&gt;
+
+&lt;p&gt;这一步对于使用Bootstrap的人来说比较简单，只要修改&lt;code&gt;_includes\themes\twitter&lt;/code&gt;目录下的&lt;code&gt;default.html&lt;/code&gt;文件即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;navbar navbar-fixed-top navbar-inverse&amp;quot;&amp;gt;
+  &amp;lt;div class=&amp;quot;navbar-inner&amp;quot;&amp;gt;
+    &amp;lt;a class=&amp;quot;brand&amp;quot; href=&amp;quot;{{ HOME_PATH }}&amp;quot;&amp;gt;{{ site.title }}&amp;lt;/a&amp;gt;
+    &amp;lt;ul class=&amp;quot;nav&amp;quot;&amp;gt;
+    {% assign pages_list = site.pages %}
+    {% assign group = &amp;#39;navigation&amp;#39; %}
+    {% include JB/pages_list %}
+      &amp;lt;li&amp;gt;
+        &amp;lt;form class=&amp;quot;navbar-search&amp;quot; action=&amp;quot;search.html&amp;quot; method=&amp;quot;get&amp;quot;&amp;gt;
+          &amp;lt;input name=&amp;quot;query&amp;quot; type=&amp;quot;text&amp;quot; class=&amp;quot;search-query&amp;quot; placeholder=&amp;quot;search&amp;quot;&amp;gt;
+        &amp;lt;/form&amp;gt;
+      &amp;lt;/li&amp;gt;
+    &amp;lt;/ul&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上是修改后的&lt;code&gt;default.html&lt;/code&gt;的导航条片段。值得注意的是，&lt;code&gt;form&lt;/code&gt;元素的&lt;code&gt;action&lt;/code&gt;地址是&lt;code&gt;search.html&lt;/code&gt;，那么接着就该创建&lt;code&gt;search.html&lt;/code&gt;了。&lt;/p&gt;
+
+&lt;h3 id='searchhtml'&gt;创建search.html&lt;/h3&gt;
+
+&lt;p&gt;在&lt;code&gt;username.github.io&lt;/code&gt;目录下创建一个&lt;code&gt;search.html&lt;/code&gt;，文件内容如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: page
+title: Search Results
+header: Search Results
+---
+{% include JB/setup %}
+&amp;lt;div id=&amp;quot;search_results&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+  $(&amp;#39;#search_results&amp;#39;).tapir({&amp;#39;token&amp;#39;: &amp;#39;5192e86e3f61b05bbb0009f6&amp;#39;});
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;需要关注的是jQuery选择的是ID为&lt;code&gt;search_results&lt;/code&gt;的元素，这是&lt;code&gt;search.html&lt;/code&gt;页面中用来摆放搜索结果的DIV的ID。另外，请自行替换token的值。&lt;/p&gt;
+
+&lt;p&gt;现在搜索功能就已经完成了，可以先在本地使用&lt;code&gt;$ jekyll serve&lt;/code&gt;进行编译和预览，然后再提交到GitHub上。&lt;/p&gt;</content>
+   <summary type="html">记录了用Tapir为Jekyll博客添加搜索功能的步骤</summary>
+ </entry>
+ 
+ <entry>
+   <title>Liquid日期格式</title>
+   <link href="http://hantconny.github.io/2013/05/13/liquid-date-format"/>
+   <updated>2013-05-13T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/13/liquid-date-format</id>
+   <content type="html">&lt;p&gt;不是太喜欢archive.html页面里的时间戳，所以修改一下。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;01-Sep-2012
+31-May-2013
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2012-09-01
+2013-05-31
+...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Google一下，找到Liquid关于日期格式的&lt;a href='http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012'&gt;说明&lt;/a&gt;。至于修改，不能直接修改&lt;code&gt;archive.html&lt;/code&gt;页面，要修改&lt;code&gt;_includes\JB\posts_collate&lt;/code&gt;文件才可以。&lt;/p&gt;
+
+&lt;p&gt;找到&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;span&amp;gt;{{ post.date | date_to_long_string }}&amp;lt;/span&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;修改为&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;span&amp;gt;{{ post.date | date:&amp;quot;%Y-%m-%d&amp;quot; }}&amp;lt;/span&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;同样适用于修改&lt;code&gt;_includes\themes\twitter\&lt;/code&gt;目录下的&lt;code&gt;post.html&lt;/code&gt;模板，但是，&lt;code&gt;post.html&lt;/code&gt;文件中是&lt;code&gt;page.date&lt;/code&gt;，而不是&lt;code&gt;post.date&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h4 id='ps'&gt;PS:&lt;/h4&gt;
+
+&lt;p&gt;在写这篇日志的时候还发现，如果要在文章中以文本的形式写Liquid代码的话，可以用&lt;code&gt;{% raw %}&lt;/code&gt;和&lt;code&gt;{% endraw %}&lt;/code&gt;将Liquid代码包裹起来进行转义，这是一个由Jekyll提供的plugin，很便捷。&lt;/p&gt;
+
+&lt;p&gt;如果不用Jekyll提供的插件，也可以参考&lt;a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'&gt;这里&lt;/a&gt;的做法。目前我对这个处理方法的理解是：&lt;/p&gt;
+
+&lt;p&gt;可以使用花括号加双引号的组合&lt;code&gt;{{&amp;quot;&amp;quot;}}&lt;/code&gt;来转义Liquid代码的前半个花括号，这样后半部分的&lt;code&gt;% raw %}&lt;/code&gt;就会被当成文本处理掉。&lt;/p&gt;</content>
+   <summary type="html">调整了Jekyll里面的Liquid时间戳，并且小小探究了如何在转义Liquid代码</summary>
+ </entry>
+ 
+ <entry>
+   <title>图片测试</title>
+   <link href="http://hantconny.github.io/2013/05/11/photo-test"/>
+   <updated>2013-05-11T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/11/photo-test</id>
+   <content type="html">&lt;h3 id='flickr'&gt;Flickr测试&lt;/h3&gt;
+&lt;a href='http://www.flickr.com/photos/hantconny/4372541168/' title='Flickr 上 Will.Cai 的 000016'&gt;&lt;img alt='000016' class='img-polaroid' height='345' src='http://farm5.staticflickr.com/4014/4372541168_ebe8959093.jpg' width='500' /&gt;&lt;/a&gt;</content>
+   <summary type="html">测试了Flickr的图片外链</summary>
+ </entry>
+ 
+ <entry>
+   <title>在Windows上搭建Jekyll博客环境</title>
+   <link href="http://hantconny.github.io/2013/05/09/using-jekyll-on-windows"/>
+   <updated>2013-05-09T00:00:00+08:00</updated>
+   <id>http://hantconny.github.io/2013/05/09/using-jekyll-on-windows</id>
+   <content type="html">&lt;h3 id='github_for_windows'&gt;安装GitHub for Windows&lt;/h3&gt;
+
+&lt;p&gt;可以直接从GitHub&lt;a href='http://windows.github.com/'&gt;下载&lt;/a&gt;，简单的双击安装即可。&lt;/p&gt;
+
+&lt;h3 id='pages'&gt;使用Pages&lt;/h3&gt;
+
+&lt;p&gt;在GitHub上新建一个Repository，并将该Repository命名为&lt;code&gt;username/username.github.io&lt;/code&gt;。这一点可以参考GitHub关于Pages的&lt;a href='https://help.github.com/articles/user-organization-and-project-pages#user--organization-pages'&gt;说明&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是：以前使用Pages时，新建的Repository名称是&lt;code&gt;username/username.github.com&lt;/code&gt;，而现在是&lt;code&gt;username/username.github.io&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id='jekyll'&gt;安装Jekyll&lt;/h3&gt;
+
+&lt;h4 id='step_one'&gt;Step One&lt;/h4&gt;
+
+&lt;p&gt;Jekyll的Blog上给出了一个在Windows平台使用Jekyll的&lt;a href='http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html'&gt;解决方案&lt;/a&gt;，这里只是简单记录一下版本信息。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby 1.9.2-p290(XP-32) / Ruby 2.0.0-p0(Win7-32)&lt;/li&gt;
+
+&lt;li&gt;DevKit DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe(XP-32) / DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe(Win7-32)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;假定Ruby安装在D盘根目录的Ruby192目录，DevKit解压在D盘根目录的DevKit目录，然后打开CMD。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd D:\DevKit
+D:\DevKit&amp;gt;ruby dk.rb init
+D:\DevKit&amp;gt;ruby dk.rb install
+D:\DevKit&amp;gt;gem install jekyll&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='step_two'&gt;Step Two&lt;/h4&gt;
+
+&lt;p&gt;这一步我觉得在Windows上没有那么繁琐。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;先clone自己的&lt;code&gt;username/username.github.io&lt;/code&gt;到本地（虽然里面没什么东西）&lt;/li&gt;
+
+&lt;li&gt;然后直接去github上&lt;a href='https://github.com/plusjade/jekyll-bootstrap'&gt;下载&lt;/a&gt;Jekyll Bootstrap，然后解压到本地的&lt;code&gt;username.github.io&lt;/code&gt;文件夹里面。&lt;/li&gt;
+
+&lt;li&gt;然后在Powershell（装好GitHub for Windows就有）里面操作。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;没什么复杂的，简单的一套git命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -m &amp;#39;initial load&amp;#39;
+git push origin master&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id='step_three'&gt;Step Three&lt;/h4&gt;
+
+&lt;p&gt;最后去浏览器输入&lt;code&gt;username.github.io&lt;/code&gt;看下效果。&lt;/p&gt;
+
+&lt;h3 id='disqus'&gt;注册DISQUS&lt;/h3&gt;
+
+&lt;p&gt;这一步相对简单，天朝骚年的英文水平对付这个注册肯定没有问题，所以简单点写。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;site url填&lt;code&gt;username.github.io&lt;/code&gt;。&lt;/li&gt;
+
+&lt;li&gt;site name随意。&lt;/li&gt;
+
+&lt;li&gt;site shortname会根据site name生成，但是可以自己改，因为多半情况下是提示已经被占用。&lt;/li&gt;
+
+&lt;li&gt;取消enable promoted discovery。&lt;/li&gt;
+
+&lt;li&gt;然后改本地的&lt;code&gt;username.github.io&lt;/code&gt;根目录下的&lt;code&gt;_config.yml&lt;/code&gt;文件，找到&lt;code&gt;disqus : &amp;lt;short_name&amp;gt;&lt;/code&gt;，改成DISQUS生成的site shortname即可。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id='jekyllencoding'&gt;解决Jekyll中文Encoding问题&lt;/h3&gt;
+
+&lt;p&gt;找到&lt;code&gt;&amp;lt;RUBY_PATH&amp;gt;\lib\ruby\gems\&amp;lt;RUBY_VERSION&amp;gt;\gems\jekyll-&amp;lt;VERSION&amp;gt;\lib\jekyll\convertible.rb&lt;/code&gt;文件，把里面的&lt;code&gt;self.content = File.read(File.join(base, name))&lt;/code&gt; 换成 &lt;code&gt;self.content = File.read(File.join(base, name), :encoding =&amp;gt; &amp;quot;utf-8&amp;quot;)&lt;/code&gt;即可。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是这一行的位置根据Ruby版本的不同也不一样，大致在27行～29行的样子。&lt;/p&gt;</content>
+   <summary type="html">记录了如何在Windows上搭建Jekyll环境</summary>
+ </entry>
+ 
+ 
+</feed>

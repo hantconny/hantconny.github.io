@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>在Windows上搭建Jekyll博客环境</title>
+
+<meta name="description" content="记录了如何在Windows上搭建Jekyll环境">
+
+<meta name="author" content="Will Cai">
+<!-- Enable responsive viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- styles -->
+<link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/themes/twitter/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+<!-- fav and touch icons -->
+<link rel="shortcut icon" href="https://github.com/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-144.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144.png" />
+<!-- atom & rss feed -->
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+<link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+<!-- replace brand font with cufon plugin-->
+<script src="/assets/themes/twitter/js/cufon-yui.js"></script>
+<script src="/assets/themes/twitter/js/Annabelle_400.font.js"></script>
+<script>
+  Cufon.replace(".brand", {fontFamily : "Annabelle"});
+  Cufon.replace(".nav a", {fontFamily : "Annabelle"});
+</script>
+<!-- tapir search -->
+<script src="/assets/themes/twitter/js/jquery-1.6.1.min.js"></script>
+<script src="/assets/themes/twitter/js/jquery-tapir.min.js"></script>
+<style>
+  #content-container{
+    background-color: white;
+    margin-bottom: 50px;
+    margin-top: 100px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 80%;
+    margin-left: 10%;
+	border: 1px solid #ccc;
+  }
+  small{
+    color: #aaa;
+  }
+  #toTop {
+    width: 50px;
+    height: 50px;
+    background: #fff url(http://img02.taobaocdn.com/imgextra/i2/45631983/T2nxq5XhXXXXXXXXXX_!!45631983.png);
+    position: fixed;
+    left: 95%;
+    bottom: 50px;
+    cursor: pointer;
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <!-- nav container -->
+  <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <a class="brand" href="/">Will's thoughts</a>
+      <ul class="nav">
+      
+      
+      
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+        <li>
+          <form class="navbar-search" action="/search.html" method="get">
+            <input name="query" type="text" class="search-query" placeholder="Search">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- content container -->
+  <div id="content-container" class="content">
+<div class="page-header">
+  <h2>在Windows上搭建Jekyll博客环境
+  
+  </h2>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="text-right">
+      <!--<span>09 May 2013</span>-->
+      <span>2013-05-09</span>
+    </div>
+    <div class="content">
+      <h3 id='github_for_windows'>安装GitHub for Windows</h3>
+
+<p>可以直接从GitHub<a href='http://windows.github.com/'>下载</a>，简单的双击安装即可。</p>
+
+<h3 id='pages'>使用Pages</h3>
+
+<p>在GitHub上新建一个Repository，并将该Repository命名为<code>username/username.github.io</code>。这一点可以参考GitHub关于Pages的<a href='https://help.github.com/articles/user-organization-and-project-pages#user--organization-pages'>说明</a>。</p>
+
+<p>需要注意的是：以前使用Pages时，新建的Repository名称是<code>username/username.github.com</code>，而现在是<code>username/username.github.io</code>。</p>
+
+<h3 id='jekyll'>安装Jekyll</h3>
+
+<h4 id='step_one'>Step One</h4>
+
+<p>Jekyll的Blog上给出了一个在Windows平台使用Jekyll的<a href='http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html'>解决方案</a>，这里只是简单记录一下版本信息。</p>
+
+<ul>
+<li>Ruby 1.9.2-p290(XP-32) / Ruby 2.0.0-p0(Win7-32)</li>
+
+<li>DevKit DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe(XP-32) / DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe(Win7-32)</li>
+</ul>
+
+<p>假定Ruby安装在D盘根目录的Ruby192目录，DevKit解压在D盘根目录的DevKit目录，然后打开CMD。</p>
+
+<pre><code>cd D:\DevKit
+D:\DevKit&gt;ruby dk.rb init
+D:\DevKit&gt;ruby dk.rb install
+D:\DevKit&gt;gem install jekyll</code></pre>
+
+<h4 id='step_two'>Step Two</h4>
+
+<p>这一步我觉得在Windows上没有那么繁琐。</p>
+
+<ul>
+<li>先clone自己的<code>username/username.github.io</code>到本地（虽然里面没什么东西）</li>
+
+<li>然后直接去github上<a href='https://github.com/plusjade/jekyll-bootstrap'>下载</a>Jekyll Bootstrap，然后解压到本地的<code>username.github.io</code>文件夹里面。</li>
+
+<li>然后在Powershell（装好GitHub for Windows就有）里面操作。</li>
+</ul>
+
+<p>没什么复杂的，简单的一套git命令</p>
+
+<pre><code>git add .
+git commit -m &#39;initial load&#39;
+git push origin master</code></pre>
+
+<h4 id='step_three'>Step Three</h4>
+
+<p>最后去浏览器输入<code>username.github.io</code>看下效果。</p>
+
+<h3 id='disqus'>注册DISQUS</h3>
+
+<p>这一步相对简单，天朝骚年的英文水平对付这个注册肯定没有问题，所以简单点写。</p>
+
+<ul>
+<li>site url填<code>username.github.io</code>。</li>
+
+<li>site name随意。</li>
+
+<li>site shortname会根据site name生成，但是可以自己改，因为多半情况下是提示已经被占用。</li>
+
+<li>取消enable promoted discovery。</li>
+
+<li>然后改本地的<code>username.github.io</code>根目录下的<code>_config.yml</code>文件，找到<code>disqus : &lt;short_name&gt;</code>，改成DISQUS生成的site shortname即可。</li>
+</ul>
+
+<h3 id='jekyllencoding'>解决Jekyll中文Encoding问题</h3>
+
+<p>找到<code>&lt;RUBY_PATH&gt;\lib\ruby\gems\&lt;RUBY_VERSION&gt;\gems\jekyll-&lt;VERSION&gt;\lib\jekyll\convertible.rb</code>文件，把里面的<code>self.content = File.read(File.join(base, name))</code> 换成 <code>self.content = File.read(File.join(base, name), :encoding =&gt; &quot;utf-8&quot;)</code>即可。</p>
+
+<p>需要注意的是这一行的位置根据Ruby版本的不同也不一样，大致在27行～29行的样子。</p>
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#备忘-ref">
+    		备忘 <span>4</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+  
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#GitHub-ref">GitHub <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Jekyll-ref">Jekyll <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#DISQUS-ref">DISQUS <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+
+    <hr>
+    
+    <div class="pagination-centered">
+      <ul class="pager">
+      
+        <li class="previous disabled"><a>&larr; Older</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2013/05/11/photo-test" title="图片测试">Newer &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'hantconny'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+</div>
+
+  <!-- foot container -->
+  <footer>
+    <p class="text-center">
+      <small>Powered by <a href="http://jekyllbootstrap.com" title="The Definitive Jekyll Blogging Framework">Jekyll</a> and <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> | Copyright 2013 Will Cai All rights reserved.
+      </small>
+    </p>
+  </footer>
+  
+  <div id="toTop"></div>
+  <!-- Back to top animation -->
+  <script type="text/javascript">
+  $(function() {
+    $(window).scroll(function() {
+      if($(this).scrollTop() != 0) {
+        $('#toTop').fadeIn();
+      } else {
+        $('#toTop').fadeOut();
+      }
+    });
+    $('#toTop').click(function() {
+      $('body, html').animate({scrollTop:0},500);
+    });
+  });
+  </script>
+
+  
+  <!-- Google Analytics -->
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40876652-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</body>
+</html>
+
