@@ -23,7 +23,7 @@ WampServer安装目录：`C:\wamp`
 
 #### WampServer安装 ####
 
-- 安装Microsoft Visual C++ 2010 SP1 Redistributable Package (x86)
+- 安装Microsoft Visual C++
 
 - 安装火狐
 
