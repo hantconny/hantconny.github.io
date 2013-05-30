@@ -23,11 +23,11 @@ WampServer安装目录：`C:\wamp`
 
 #### WampServer安装 ####
 
-- 安装Microsoft Visual C++
+安装Microsoft Visual C++
 
-- 安装火狐
+安装火狐
 
-- 安装WampServer
+安装WampServer
 #### WampServer配置 ####
 为了允许非本机访问，需要修改Apache和phpMyAdmin的两个配置文件。
 
