@@ -26,6 +26,7 @@ WampServer安装目录：`C:\wamp`
 2. 安装火狐
 3. 安装WampServer
 
+
 #### WampServer配置 ####
 为了允许非本机访问，需要修改Apache和phpMyAdmin的两个配置文件。
 
