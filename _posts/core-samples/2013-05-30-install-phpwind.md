@@ -22,8 +22,11 @@ WampServer安装目录：`C:\wamp`
 下载[WampServer](http://www.wampserver.com/)
 
 #### WampServer安装 ####
+
 1. 安装Microsoft Visual C++ 2010 SP1 Redistributable Package (x86)
+
 2. 安装火狐
+
 3. 安装WampServer
 
 
