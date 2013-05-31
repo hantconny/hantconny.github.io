@@ -125,3 +125,36 @@ WampServer安装目录：`C:\wamp`
     PHPWind v9.0不要复制upload\.htaccess文件
 
 访问`localhost/install.php`开始安装
+
+
+### PS:让Apache能部署多个项目 ###
+这里因为是在给公司测试选型，所以选用同IP，不同端口这种实现方式。由于我对Apache及PHP并不熟悉，只是临时救火，所以按下不表，具体可以参见Apache[官网](http://httpd.apache.org/docs/2.0/vhosts/examples.html)。
+
+- 修改Apache的`httpd.conf`文件
+
+路径：`C:\wamp\bin\apache\apache2.2.22\conf\`
+
+找到
+
+    Listen 80
+    
+修改为
+    
+    Listen 80
+    Listen 81
+    <VirtualHost *:80>   
+        DocumentRoot C:/wamp/www
+        ServerName phpwind
+    </VirtualHost>   
+    <VirtualHost *:81>   
+        DocumentRoot C:/wamp/www2
+        ServerName ecshop
+    </VirtualHost>
+    ...省略若干
+    <Directory "c:/wamp/www2/">
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+重启WampServer即可
