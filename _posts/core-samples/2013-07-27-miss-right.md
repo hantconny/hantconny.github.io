@@ -7,6 +7,6 @@ description : She might be my miss right
 ---
 {% include JB/setup %}
 
-13.07.27
+Jul. 8, 2013
 
 She might be my miss right.

@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Liquid日期格式</title>
+<title>使用WampServer搭建WAMP环境</title>
 
-<meta name="description" content="调整了Jekyll里面的Liquid时间戳，并且小小探究了如何在转义Liquid代码">
+<meta name="description" content="记录使用WampServer整合安装包搭建WAMP环境, 并安装PHPWIND论坛">
 
 <meta name="author" content="Will Cai">
 <!-- Enable responsive viewport -->
@@ -149,7 +149,7 @@
   <!-- content container -->
   <div id="content-container" class="content">
 <div class="page-header">
-  <h2>Liquid日期格式
+  <h2>使用WampServer搭建WAMP环境
   
   </h2>
 </div>
@@ -157,41 +157,184 @@
 <div class="row-fluid post-full">
   <div class="span12">
     <div class="text-right">
-      <!--<span>13 May 2013</span>-->
-      <span>2013-05-13</span>
+      <!--<span>30 May 2013</span>-->
+      <span>2013-05-30</span>
     </div>
     <div class="content">
-      <p>不是太喜欢archive.html页面里的时间戳，所以修改一下。</p>
+      <h3 id='id58'>版本及目录信息</h3>
 
-<pre><code>01-Sep-2012
-31-May-2013
-...</code></pre>
+<p>OS：<code>32位 Window7 Ultimate</code></p>
+
+<p>Microsoft Visual C++：<code>2010 SP1 Redistributable Package (x86)</code></p>
+
+<p>WampServer：<code>(32 bits &amp; PHP 5.3) 2.2E</code></p>
+
+<p>PHPWind：<code>v9.0</code></p>
+
+<p>WampServer安装目录：<code>C:\wamp</code></p>
+
+<h3 id='wampserver'>WampServer部分</h3>
+
+<h4 id='wampserver'>WampServer下载</h4>
+
+<p>下载<a href='http://www.wampserver.com/'>WampServer</a></p>
+
+<h4 id='wampserver'>WampServer安装</h4>
+
+<p>安装Microsoft Visual C++</p>
+
+<p>安装火狐</p>
+
+<p>安装WampServer</p>
+
+<h4 id='wampserver'>WampServer配置</h4>
+
+<p>为了允许非本机访问，需要修改Apache和phpMyAdmin的两个配置文件。</p>
+
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+
+<p>找到如下代码</p>
+
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;</code></pre>
 
 <p>修改为</p>
 
-<pre><code>2012-09-01
-2013-05-31
-...</code></pre>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    #    Order Deny,Allow
+    #    Deny from all
+    #    Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;</code></pre>
 
-<p>Google一下，找到Liquid关于日期格式的<a href='http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012'>说明</a>。至于修改，不能直接修改<code>archive.html</code>页面，要修改<code>_includes\JB\posts_collate</code>文件才可以。</p>
+<ul>
+<li>修改phpMyAdmin的<code>phpmyadmin.conf</code>文件</li>
+</ul>
+
+<p>路径：<code>C:\wamp\alias\</code></p>
 
 <p>找到</p>
 
-<p><code>&lt;span&gt;{{ post.date | date_to_long_string }}&lt;/span&gt;</code></p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    AllowOverride all
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;</code></pre>
 
 <p>修改为</p>
 
-<p><code>&lt;span&gt;{{ post.date | date:&quot;%Y-%m-%d&quot; }}&lt;/span&gt;</code></p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    #    AllowOverride all
+    #    Order Deny,Allow
+    #	 Deny from all
+    #	 Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;</code></pre>
 
-<p>同样适用于修改<code>_includes\themes\twitter\</code>目录下的<code>post.html</code>模板，但是，<code>post.html</code>文件中是<code>page.date</code>，而不是<code>post.date</code>。</p>
+<p>另外，由于WampServer默认没有设置MySQL的密码，所以还需要把MySQL的密码设置起来。</p>
 
-<h4 id='ps'>PS:</h4>
+<ul>
+<li>设置MySQL密码</li>
+</ul>
 
-<p>在写这篇日志的时候还发现，如果要在文章中以文本的形式写Liquid代码的话，可以用<code>{% raw %}</code>和<code>{% endraw %}</code>将Liquid代码包裹起来进行转义，这是一个由Jekyll提供的plugin，很便捷。</p>
+<p>在火狐中输入<code>localhost/phpmyadmin</code>进入phpMyAdmin的界面，切换到SQL页面。</p>
 
-<p>如果不用Jekyll提供的插件，也可以参考<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>这里</a>的做法。目前我对这个处理方法的理解是：</p>
+<p>先查询mysql.user表中关于root的信息：</p>
 
-<p>可以使用花括号加双引号的组合<code>{{&quot;&quot;}}</code>来转义Liquid代码的前半个花括号，这样后半部分的<code>% raw %}</code>就会被当成文本处理掉。</p>
+<pre><code>select * from mysql.user where User = &#39;root&#39;;</code></pre>
+
+<p>然后利用password函数加密明文密码并更新root的密码：</p>
+
+<pre><code>update mysql.user set Password = password(&#39;ok&#39;) where User = &#39;root&#39;;</code></pre>
+
+<p>最后使修改生效：</p>
+
+<pre><code>flush privileges;</code></pre>
+
+<p>重启WampServer</p>
+
+<ul>
+<li>设置phpMyAdmin的<code>config.inc.php</code>文件</li>
+</ul>
+
+<p>路径：<code>C:\wamp\apps\phpmyadmin3.5.1\</code></p>
+
+<p>找到</p>
+
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;&#39;;</code></pre>
+
+<p>修改为</p>
+
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;ok&#39;;</code></pre>
+
+<p>重启WampServer</p>
+
+<h3 id='phpwind'>PHPWind部分</h3>
+
+<h4 id='phpwind'>PHPWind下载</h4>
+
+<p>下载<a href='http://www.phpwind.com/index.php?m=downloads&amp;a=downloadsphpwind'>PHPWind</a></p>
+
+<h4 id='phpwind'>PHPWind安装</h4>
+
+<p>解压压缩包，并把<code>upload</code>目录下的所有内容复制到<code>C:\wamp\www\</code>目录下</p>
+
+<pre><code>PHPWind v9.0不要复制upload\.htaccess文件</code></pre>
+
+<p>访问<code>localhost/install.php</code>开始安装</p>
+
+<h3 id='psapache'>PS:让Apache能部署多个项目</h3>
+
+<p>这里因为是在给公司测试选型，所以选用同IP，不同端口这种实现方式。由于我对Apache及PHP并不熟悉，只是临时救火，所以按下不表，具体可以参见Apache<a href='http://httpd.apache.org/docs/2.0/vhosts/examples.html'>官网</a>。</p>
+
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+
+<p>找到</p>
+
+<pre><code>Listen 80</code></pre>
+
+<p>修改为</p>
+
+<pre><code>Listen 80
+Listen 81
+&lt;VirtualHost *:80&gt;   
+    DocumentRoot C:/wamp/www
+    ServerName phpwind
+&lt;/VirtualHost&gt;   
+&lt;VirtualHost *:81&gt;   
+    DocumentRoot C:/wamp/www2
+    ServerName ecshop
+&lt;/VirtualHost&gt;
+...省略若干
+&lt;Directory &quot;c:/wamp/www2/&quot;&gt;
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;</code></pre>
+
+<p>重启WampServer即可</p>
     </div>
 
   
@@ -222,7 +365,13 @@
 
   
      
-    	<li><a href="/tags.html#Liquid-ref">Liquid <span>1</span></a></li>
+    	<li><a href="/tags.html#Apache-ref">Apache <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#PHP-ref">PHP <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#WAMP-ref">WAMP <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#PHPWIND-ref">PHPWIND <span>1</span></a></li>
     
   
 
@@ -236,11 +385,11 @@
     <div class="pagination-centered">
       <ul class="pager">
       
-        <li class="previous"><a href="/2013/05/11/photo-test" title="图片测试">&larr; Older</a></li>
+        <li class="previous"><a href="/2013/05/29/copperplate" title="静心养气">&larr; Older</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2013/05/15/searching-jekyll-with-tapirgo" title="使用Tapir给Jekyll博客添加全文搜索">Newer &rarr;</a></li>
+        <li class="next"><a href="/2013/05/31/change-cmd-path" title="更改CMD的起始路径">Newer &rarr;</a></li>
       
       </ul>
     </div>

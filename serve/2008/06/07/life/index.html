@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Liquid日期格式</title>
+<title>生命</title>
 
-<meta name="description" content="调整了Jekyll里面的Liquid时间戳，并且小小探究了如何在转义Liquid代码">
+<meta name="description" content="我可爱的弟弟妹妹们">
 
 <meta name="author" content="Will Cai">
 <!-- Enable responsive viewport -->
@@ -149,7 +149,7 @@
   <!-- content container -->
   <div id="content-container" class="content">
 <div class="page-header">
-  <h2>Liquid日期格式
+  <h2>生命
   
   </h2>
 </div>
@@ -157,41 +157,49 @@
 <div class="row-fluid post-full">
   <div class="span12">
     <div class="text-right">
-      <!--<span>13 May 2013</span>-->
-      <span>2013-05-13</span>
+      <!--<span>07 June 2008</span>-->
+      <span>2008-06-07</span>
     </div>
     <div class="content">
-      <p>不是太喜欢archive.html页面里的时间戳，所以修改一下。</p>
+      <p>生命。</p>
 
-<pre><code>01-Sep-2012
-31-May-2013
-...</code></pre>
+<p>这个词很沉实，因为它会逝去，而更重要的是他带来新生。</p>
 
-<p>修改为</p>
+<p>相比较于几年前，现在对乡下的感觉很好，开始羡慕那种荒芜而苍翠的妩媚，那种日出而作，日落而息的规律，也许这个才是真正的生命规律，不会让你失眠头疼，不会让你借助于酒精和尼古丁。</p>
 
-<pre><code>2012-09-01
-2013-05-31
-...</code></pre>
+<p>幻想那个没有人格的时代；没有机器轰鸣的时代；那个以追逐汽车尾气为乐的时代；那个夜不闭户，路不拾遗的时代。</p>
 
-<p>Google一下，找到Liquid关于日期格式的<a href='http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012'>说明</a>。至于修改，不能直接修改<code>archive.html</code>页面，要修改<code>_includes\JB\posts_collate</code>文件才可以。</p>
+<p>门口的四棵银杏在不久前已经不属于那个院子的主人，大大小小的主人，包括那两只黄色的猫，他们不能够继续在上面眯眼睡觉了，甚至连蹭个爪子也要到别处去了。也不知道别处的主人是否这么好心，乐意看见树上有不知名的爪痕。</p>
 
-<p>找到</p>
+<p>我自认童年是一个很乖的小孩，不会出去爬树掏鸟，所以对那四棵树没什么感觉，没有回忆。说到回忆，过去的事才能用来回忆，而将来的事则变成了欲望。两个因为时间而不同的概念。</p>
 
-<p><code>&lt;span&gt;{{ post.date | date_to_long_string }}&lt;/span&gt;</code></p>
+<p>所以在我听到院子的主人说银杏已经不属于他的时候，我抬起头想留下一点回忆，不愿在不久的将来用欲望去缅怀。</p>
 
-<p>修改为</p>
+<p>树根处有泥土开挖的痕迹，还有几根因为雨淋而褪去鲜红的檀香，前天刚刚有过小雨。听院子的主人说，树会在一个好日子动土开挖。</p>
 
-<p><code>&lt;span&gt;{{ post.date | date:&quot;%Y-%m-%d&quot; }}&lt;/span&gt;</code></p>
+<p>主干不是很高，大概一托的长度，海碗口大小粗细，嫩芽透出一片绿烟，当然可以想见枝叶繁茂时的荫蔽。也无怪阿猫阿狗会在附近嬉戏徘徊。</p>
 
-<p>同样适用于修改<code>_includes\themes\twitter\</code>目录下的<code>post.html</code>模板，但是，<code>post.html</code>文件中是<code>page.date</code>，而不是<code>post.date</code>。</p>
+<p>挖掉那四棵银杏其实也还好，院堂的阳光也会更充足点。晒谷子的地方也更大，也不用楼上楼下的来回捣腾地方。不过这是未来的欲望了。乡下的房子总是宽敞的，每间屋子都很高。这样其实住着很舒服，就像一般人看到海会开阔很多，看到乡下的房子心境也敞亮很多。</p>
 
-<h4 id='ps'>PS:</h4>
+<p>在老爸的忌日看到菊茂，在同龄的孩子里面显得高大帅气了很多。</p>
 
-<p>在写这篇日志的时候还发现，如果要在文章中以文本的形式写Liquid代码的话，可以用<code>{% raw %}</code>和<code>{% endraw %}</code>将Liquid代码包裹起来进行转义，这是一个由Jekyll提供的plugin，很便捷。</p>
+<p>以前对处于婴儿状态的孩子只是觉着可爱或是希望一类的罢了，从来没有想过说像父辈，也不认为其他人如此之说是夸奖亦或什么。只是觉得多余。</p>
 
-<p>如果不用Jekyll提供的插件，也可以参考<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>这里</a>的做法。目前我对这个处理方法的理解是：</p>
+<p>然而菊茂是个例外，他和叔叔确实很像。</p>
 
-<p>可以使用花括号加双引号的组合<code>{{&quot;&quot;}}</code>来转义Liquid代码的前半个花括号，这样后半部分的<code>% raw %}</code>就会被当成文本处理掉。</p>
+<p>菊茂这个名字是三爷爷取的，寓意出生在菊花茂盛之时。初听的时候，我蓦然一笑，感觉很女性，但是叫多了以后，倒是很有余韵，渐渐的，也觉得很好听，古朴的东西总是耐人玩味的。</p>
+
+<p>在那个华丽富有的早春太阳的阴影下，他的样貌是令人喜悦的，有着小孩子特有的气息。穿过油菜的香味和风的声音，在那个地方，我感觉到了生命。</p>
+
+<p>5个孩子，3男2女。</p>
+
+<p>小孩子的一生其实在他的童年就一览无余了。菊茂开始很勇敢的开口叫人了，不再腼腆的看着我，一味的笑。在那个有着富丽的阳光的午后，看着他，我很惊喜。</p>
+
+<p>雨臻，钰琳，文钰，菊茂。</p>
+
+<p>突然发现他们都是3个字的名字，都温文尔雅，敦厚中多少带了点中庸，着大概也是这个家族特有的品质。</p>
+
+<p>那一天，我本想掺着谁，看着谁，陪着谁，不过已经没有谁。</p>
     </div>
 
   
@@ -203,8 +211,8 @@
 
   
      
-    	<li><a href="/categories.html#备忘-ref">
-    		备忘 <span>7</span>
+    	<li><a href="/categories.html#杂念-ref">
+    		杂念 <span>3</span>
     	</a></li>
     
   
@@ -222,7 +230,7 @@
 
   
      
-    	<li><a href="/tags.html#Liquid-ref">Liquid <span>1</span></a></li>
+    	<li><a href="/tags.html#杂念-ref">杂念 <span>2</span></a></li>
     
   
 
@@ -236,11 +244,11 @@
     <div class="pagination-centered">
       <ul class="pager">
       
-        <li class="previous"><a href="/2013/05/11/photo-test" title="图片测试">&larr; Older</a></li>
+        <li class="previous disabled"><a>&larr; Older</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2013/05/15/searching-jekyll-with-tapirgo" title="使用Tapir给Jekyll博客添加全文搜索">Newer &rarr;</a></li>
+        <li class="next"><a href="/2008/06/16/to-my-father" title="记在父亲节后一天">Newer &rarr;</a></li>
       
       </ul>
     </div>

@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Liquid日期格式</title>
+<title>记在父亲节后一天</title>
 
-<meta name="description" content="调整了Jekyll里面的Liquid时间戳，并且小小探究了如何在转义Liquid代码">
+<meta name="description" content="一些在父亲节后一天的想法">
 
 <meta name="author" content="Will Cai">
 <!-- Enable responsive viewport -->
@@ -149,7 +149,7 @@
   <!-- content container -->
   <div id="content-container" class="content">
 <div class="page-header">
-  <h2>Liquid日期格式
+  <h2>记在父亲节后一天
   
   </h2>
 </div>
@@ -157,41 +157,35 @@
 <div class="row-fluid post-full">
   <div class="span12">
     <div class="text-right">
-      <!--<span>13 May 2013</span>-->
-      <span>2013-05-13</span>
+      <!--<span>16 June 2008</span>-->
+      <span>2008-06-16</span>
     </div>
     <div class="content">
-      <p>不是太喜欢archive.html页面里的时间戳，所以修改一下。</p>
+      <p>雨是已经下了很多天，可能和南方的暴雨有关。虽然下了雨以后气温降很多，但是夏天飘这种雨总感觉很怪，也很烦。</p>
 
-<pre><code>01-Sep-2012
-31-May-2013
-...</code></pre>
+<p>前天晚上，妈妈发短信说她很想我。看到这样的短信，心里的感觉很复杂。</p>
 
-<p>修改为</p>
+<p>自从老爸死了以后，妈似乎一下子孤单很多，除了正常上班，伺弄那几盆可怜的花花草草，似乎再没有别的事可以做，连找一个人生气的机会也没有。</p>
 
-<pre><code>2012-09-01
-2013-05-31
-...</code></pre>
+<p>虽然她很少和老爸生气，虽然她曾经说等我上了学就和老爸各管各的。但是我想这只是一个女人的话，而女人的话往往是言不由衷的，或者说她们一直是口是心非的。</p>
 
-<p>Google一下，找到Liquid关于日期格式的<a href='http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012'>说明</a>。至于修改，不能直接修改<code>archive.html</code>页面，要修改<code>_includes\JB\posts_collate</code>文件才可以。</p>
+<p>我一直没有从老爸死这件事里面走出来，从一开始就没有。我真的没有准备好，大大小小的影子总是在徘徊，我真的没有办法把一些事情想的那么深入，一旦深入就会陷进去，因为找不到答案而矛盾。表面上我依旧和以前一样，可以没心没肺的说话，但只要静下来就会很想他，千头万绪就像草原的马群一样飞奔过来，碾平一切。我已经麻木到不知道用什么方法来缅怀一个我思念的人，或者说是我太想缅怀他，以至于不想用任何一种粗俗简陋的方法来敷衍。</p>
 
-<p>找到</p>
+<p>我宁愿相信是后者。</p>
 
-<p><code>&lt;span&gt;{{ post.date | date_to_long_string }}&lt;/span&gt;</code></p>
+<p>长久的失眠，但究竟是从什么时候开始的，我也不知道，唯一可以确定的是从老爸死后的某一天开始到现在已经很久了。失眠是一件很痛苦的事，不是不想睡，而是睡不着，即使很累却睡不着。</p>
 
-<p>修改为</p>
+<p>昨天是父亲节，一个在父亲死后才意识到自己有多想念他的人可能最怕过的就是父亲的生日，忌日，还有父亲节了。如果还有其他可以和父亲相关联的节日，我想他也是怕过的，如果他知道并且爱他父亲的话。我也是在老爸去世以后才渐渐的开始发现其实自己离不开他，一个和自己朝夕相处了20年的人突然就此消失，即使是一件器物，也多少会有点失落感，何况是父亲。</p>
 
-<p><code>&lt;span&gt;{{ post.date | date:&quot;%Y-%m-%d&quot; }}&lt;/span&gt;</code></p>
+<p>在我生命的早些几年里，已经模糊了对于他的印象，但后来的日子对现在的我来说是弥足珍贵的。</p>
 
-<p>同样适用于修改<code>_includes\themes\twitter\</code>目录下的<code>post.html</code>模板，但是，<code>post.html</code>文件中是<code>page.date</code>，而不是<code>post.date</code>。</p>
+<p>我想过写些东西来纪念他，但是只要一触及到他，还有这个混沌的家庭，我的思路就开始混乱，所以只能作罢。</p>
 
-<h4 id='ps'>PS:</h4>
+<p>大二下学期过的很混乱，世界观、价值观等等，一切可以用来形容一个人思想层面的词语，在我都处于一种浑混的状态。我想不通为什么只给我们开那么几节课，老师在埋怨课时越来越少，从开始的120到了后来的100，然后是90，到了我们就只有60、70，这样的课时安排绝对讲不完，于是老师干脆完全浸心于研究，也乐的在茫然中偷懒，草草了事只求不误人子弟；再好学的学生也是求之不得。事实上一开始我并没有抱怨学校的意思，甚至于在别人给学院加诸国骂的时候，我也并不认同。但是久而久之，这种没有答案的矛盾让我也加入进去，甚至是在别人已经无奈认命的时候。我开始无端的谩骂，不满现实，和那些多余人一样，是聪明的废物。其实我有太多想不明白的事情，一些现实中已经是稀松平常到为人接受的但事实上却是扭曲变形的东西。</p>
 
-<p>在写这篇日志的时候还发现，如果要在文章中以文本的形式写Liquid代码的话，可以用<code>{% raw %}</code>和<code>{% endraw %}</code>将Liquid代码包裹起来进行转义，这是一个由Jekyll提供的plugin，很便捷。</p>
+<p>大二好像是一个很奇特的时段，就像一个上吊濒死的人一样，上不得天，下不得地，或者说是在垂死挣扎，扫腿喘息。也许我是因为太闲以至于无聊才会发出这样的悲观的言论，但这至少说明了一种状态。没有办法的情况下我只能去买书，一本一本的带回宿舍，一本一本的看。但这仅仅只是为了打发时间，是最低等的状态。</p>
 
-<p>如果不用Jekyll提供的插件，也可以参考<a href='http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags'>这里</a>的做法。目前我对这个处理方法的理解是：</p>
-
-<p>可以使用花括号加双引号的组合<code>{{&quot;&quot;}}</code>来转义Liquid代码的前半个花括号，这样后半部分的<code>% raw %}</code>就会被当成文本处理掉。</p>
+<p>可能最近几天心情太差，也或者下雨天人心情容易差，所以写的东西都是悲观的论调，但这也是事实，是一些被平常的细小的喜事所掩盖的事实。</p>
     </div>
 
   
@@ -203,8 +197,8 @@
 
   
      
-    	<li><a href="/categories.html#备忘-ref">
-    		备忘 <span>7</span>
+    	<li><a href="/categories.html#杂念-ref">
+    		杂念 <span>3</span>
     	</a></li>
     
   
@@ -222,7 +216,7 @@
 
   
      
-    	<li><a href="/tags.html#Liquid-ref">Liquid <span>1</span></a></li>
+    	<li><a href="/tags.html#杂念-ref">杂念 <span>2</span></a></li>
     
   
 
@@ -236,11 +230,11 @@
     <div class="pagination-centered">
       <ul class="pager">
       
-        <li class="previous"><a href="/2013/05/11/photo-test" title="图片测试">&larr; Older</a></li>
+        <li class="previous"><a href="/2008/06/07/life" title="生命">&larr; Older</a></li>
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next"><a href="/2013/05/15/searching-jekyll-with-tapirgo" title="使用Tapir给Jekyll博客添加全文搜索">Newer &rarr;</a></li>
+        <li class="next"><a href="/2013/05/09/using-jekyll-on-windows" title="在Windows上搭建Jekyll博客环境">Newer &rarr;</a></li>
       
       </ul>
     </div>

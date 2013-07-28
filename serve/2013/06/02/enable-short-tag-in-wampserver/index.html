@@ -3,7 +3,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Pages</title>
+<title>在WampServer中开启短标签</title>
+
+<meta name="description" content="记录如何在WampServer中开启PHP的短标签">
 
 <meta name="author" content="Will Cai">
 <!-- Enable responsive viewport -->
@@ -107,7 +109,7 @@
     
       
       	
-      	<li class="active"><a href="/pages.html" class="active">Pages</a></li>
+      	<li><a href="/pages.html">Pages</a></li>
       	
       
     
@@ -147,103 +149,144 @@
   <!-- content container -->
   <div id="content-container" class="content">
 <div class="page-header">
-  <h1>Pages </h1>
+  <h2>在WampServer中开启短标签
+  
+  </h2>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid post-full">
   <div class="span12">
-    
-<h2>All Pages</h2>
-<ul>
+    <div class="text-right">
+      <!--<span>02 June 2013</span>-->
+      <span>2013-06-02</span>
+    </div>
+    <div class="content">
+      <p>还是在给公司项目做选型，碰到一个用<a href='http://twitter.github.io/bootstrap/'>Bootstrap</a>作为前端框架的<a href='http://www.startbbs.com/'>StartBBS</a>，正好前段时间得空看过，所以王八看绿豆，直接对上眼了。</p>
+
+<p>不过安装完以后就报错了，论坛里也有相同错误的求助帖，但是都没有提到解决方案，只露出一点关于PHP短标签的线索，所以按图索骥Google了一下，找到了<a href='http://blog.gishome.org/post-9.html'>解决方案</a>。</p>
+
+<h3 id='id59'>版本及目录信息</h3>
+
+<p>OS：<code>32位 Window7 Ultimate</code></p>
+
+<p>WampServer：<code>(32 bits &amp; PHP 5.3) 2.2E</code></p>
+
+<p>WampServer安装目录：<code>C:\wamp</code></p>
+
+<h3 id='apache'>修改Apache目录下的<code>php.ini</code>文件</h3>
+
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\bin\php.ini</code></p>
+
+<p>找到</p>
+
+<pre><code>short_open_tag = Off</code></pre>
+
+<p>修改成</p>
+
+<pre><code>short_open_tag = On</code></pre>
+
+<h3 id='php'>修改PHP目录下的<code>php.ini</code>文件</h3>
+
+<p>路径：<code>C:\wamp\bin\php\php5.3.13\php.ini</code></p>
+
+<p>找到</p>
+
+<pre><code>short_open_tag = Off</code></pre>
+
+<p>修改成</p>
+
+<pre><code>short_open_tag = On</code></pre>
+
+<h3 id='id60'>修改站点目录下的<code>config.php</code>文件</h3>
+
+<p>例如我把StartBBS安装在<code>C:\wamp\www3\</code>下，那么该<code>config.php</code>文件的路径就是<code>C:\wamp\www3\app\config\config.php</code></p>
+
+<p>找到</p>
+
+<pre><code>$config[&#39;rewrite_short_tags&#39;]</code></pre>
+
+<p>确保该配置的值是</p>
+
+<pre><code>$config[&#39;rewrite_short_tags&#39;] = true;</code></pre>
+
+<p>重启WampServer即可。</p>
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      
+      
 
 
-
-
   
-    
-      
-      	
-      	<li><a href="/about.html">About</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/atom.xml">Atom Feed</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/categories.html">Categories</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/index.html">Will's thoughts</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li class="active"><a href="/pages.html" class="active">Pages</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/rss.xml">RSS Feed</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/search.html">Search Results</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/sitemap.txt">Sitemap</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
+     
+    	<li><a href="/categories.html#备忘-ref">
+    		备忘 <span>7</span>
+    	</a></li>
     
   
 
 
+    </ul>
+  
 
-</ul>
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#Bootstrap-ref">Bootstrap <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#PHP-ref">PHP <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#WAMP-ref">WAMP <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+
+    <hr>
+    
+    <div class="pagination-centered">
+      <ul class="pager">
+      
+        <li class="previous"><a href="/2013/05/31/change-cmd-path" title="更改CMD的起始路径">&larr; Older</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2013/07/27/miss-right" title="Miss Right">Newer &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'hantconny'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
 
   </div>
 </div>

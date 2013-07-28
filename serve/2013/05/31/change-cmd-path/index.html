@@ -3,7 +3,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Pages</title>
+<title>更改CMD的起始路径</title>
+
+<meta name="description" content="记录如何更改Windows命令行的起始位置">
 
 <meta name="author" content="Will Cai">
 <!-- Enable responsive viewport -->
@@ -107,7 +109,7 @@
     
       
       	
-      	<li class="active"><a href="/pages.html" class="active">Pages</a></li>
+      	<li><a href="/pages.html">Pages</a></li>
       	
       
     
@@ -147,103 +149,92 @@
   <!-- content container -->
   <div id="content-container" class="content">
 <div class="page-header">
-  <h1>Pages </h1>
+  <h2>更改CMD的起始路径
+  
+  </h2>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid post-full">
   <div class="span12">
-    
-<h2>All Pages</h2>
-<ul>
+    <div class="text-right">
+      <!--<span>31 May 2013</span>-->
+      <span>2013-05-31</span>
+    </div>
+    <div class="content">
+      <p>打开注册表，展开<code>HKEY_CURRENT_USER\Software\Microsoft\CommandProcessor</code>，新建一个名为AutoRun的字符串值，设置该字符串值为<code>CD /D C:\</code>，这样下次使用CMD的时候，默认路径就是C盘根目录了。</p>
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      
+      
 
 
+  
+     
+    	<li><a href="/categories.html#备忘-ref">
+    		备忘 <span>7</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+  
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
 
 
   
-    
-      
-      	
-      	<li><a href="/about.html">About</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/atom.xml">Atom Feed</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/categories.html">Categories</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/index.html">Will's thoughts</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li class="active"><a href="/pages.html" class="active">Pages</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/rss.xml">RSS Feed</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/search.html">Search Results</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/sitemap.txt">Sitemap</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
+     
+    	<li><a href="/tags.html#CMD-ref">CMD <span>1</span></a></li>
     
   
 
 
 
-</ul>
+    </ul>
+    
+
+    <hr>
+    
+    <div class="pagination-centered">
+      <ul class="pager">
+      
+        <li class="previous"><a href="/2013/05/30/install-phpwind" title="使用WampServer搭建WAMP环境">&larr; Older</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/2013/06/02/enable-short-tag-in-wampserver" title="在WampServer中开启短标签">Newer &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'hantconny'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
 
   </div>
 </div>

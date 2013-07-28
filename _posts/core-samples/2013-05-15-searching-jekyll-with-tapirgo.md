@@ -72,15 +72,7 @@ description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
     $ git push origin master
 
 ### 在Tapir注册atom.xml ###
-登入[Tapir](http://tapirgo.com/)，并填入`atom.xml`文件的位置和自己的邮箱，如下图
-
-<a href="http://www.flickr.com/photos/hantconny/8739174883/" title="Flickr 上 Will.Cai 的 tapir"><img src="http://farm8.staticflickr.com/7282/8739174883_7fc833d856.jpg" width="500" height="408" alt="tapir" class="img-polaroid"></a>
-
-<br/>
-
-<br/>
-
-点击那个大大的橘色按钮以后，会生成一个token和一个secret token。本文只会使用到token，所以暂时可以不用在意secret token。
+登入[Tapir](http://tapirgo.com/)，并填入`atom.xml`文件的位置和自己的邮箱，点击那个大大的橘色按钮以后，会生成一个token和一个secret token。本文只会使用到token，所以暂时可以不用在意secret token。
 
 ### 加入Tapir ###
 Tapir的搜索用到了jQuery，所以需要加入jQuery和一个处理Tapir搜索的js文件。修改`_includes\themes\twitter`目录下的`default.html`文件的`<head>`部分如下：
