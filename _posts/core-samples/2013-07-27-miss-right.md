@@ -1,10 +1,12 @@
 ---
 layout: post
 title: Miss Right
-category : 杂念
-tags : [杂念]
-description : 神爱世人，方式不同
+category : 杂记
+tags : [Miss Right]
+description : She might be my miss right
 ---
 {% include JB/setup %}
 
-She might be my Miss Right.
+Jul. 8, 2013
+
+She might be my miss right.
