@@ -11,7 +11,7 @@ description : 记录了如何使用PLSQL Developer连接到局域网内的Oracle
 
 假定PLSQL Developer的安装目录为`C:\Program Files (x86)\PLSQL Developer`，本文其余内容均以`$PLSQL_HOME`来指代该路径。
 
-<img src="../../imgs/plsql-alert-info.jpg" width="500" height="375" alt="PLSQL Developer提示信息">
+<img src="{{ ASSET_PATH }}/assets/images/plsql-alert-info.jpg" width="500" height="375" alt="PLSQL Developer提示信息">
 
 
 > 值得注意的是，在安装PLSQL Developer时，如果路径中带有括号，会提示你确认PLSQL Developer将来连接的Oracle版本必须是11g及以后版本。
