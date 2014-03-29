@@ -15,8 +15,6 @@ description : Farewell Wedding
 
 <br/>
 
-<br/>
-
 >四年前某个午后于江苏大阳台，在一个晒着被子看着姑娘的年纪。
 
 
