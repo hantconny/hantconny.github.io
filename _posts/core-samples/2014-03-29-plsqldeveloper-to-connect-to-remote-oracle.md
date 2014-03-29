@@ -7,7 +7,7 @@ description : 记录了如何使用PLSQL Developer连接到局域网内的Oracle
 ---
 {% include JB/setup %}
 ### 安装PLSQL Developer ###
-可以直接从allroundautomations的网站[下载](http://www.allroundautomations.com/plsqldev.html)，双击安装即可。
+可以直接从allroundautomations的网站[下载PLSQL Developer](http://www.allroundautomations.com/plsqldev.html)，双击安装即可。
 
 假定PLSQL Developer的安装目录为`C:\Program Files (x86)\PLSQL Developer`，本文其余内容均以`$PLSQL_HOME`来指代该路径。
 
@@ -16,7 +16,7 @@ description : 记录了如何使用PLSQL Developer连接到局域网内的Oracle
 > 值得注意的是，在安装PLSQL Developer时，如果路径中带有括号，会提示你确认PLSQL Developer将来连接的Oracle版本必须是11g及以后版本。
 
 ### 解压Oracle Instant Client ###
-从Oracle的网站[下载](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)Instant Client，并解压到本地目录。为了方便携带PLSQL Developer，可以直接解压到`$PLSQL_HOME\instantclient_11_2`，本文其余内容均以`$INSTANTCLIENT_HOME`指代该路径。
+从Oracle的网站[下载Instant Client](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)，并解压到本地目录。为了方便携带PLSQL Developer，可以直接解压到`$PLSQL_HOME\instantclient_11_2`，本文其余内容均以`$INSTANTCLIENT_HOME`指代该路径。
 
 > 值得注意的是，即使是在64位的操作系统，也应该选择32位的Instant Client。
 
@@ -42,7 +42,7 @@ description : 记录了如何使用PLSQL Developer连接到局域网内的Oracle
 ### 配置Windows防火墙 ###
 有的时候，局域网内的机器A通过PLSQL Developer无法连接到机器B的Oracle，原因可能有很多，这里只说明如何配置机器B的防火墙入站规则。
 
-打开防火墙的高级设置，选择入站规则，等待视图刷新后，点击右侧的新建规则
+打开防火墙的高级设置，选择*入站规则*，等待视图刷新后，点击右侧的*新建规则*
 
 <img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule.jpg" alt="入站规则">
 
@@ -59,8 +59,6 @@ description : 记录了如何使用PLSQL Developer连接到局域网内的Oracle
 <img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-4.jpg" alt="新建入站规则 Step 4">
 
 <img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-5.jpg" alt="新建入站规则 Step 5">
-
-<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-6.jpg" alt="新建入站规则 Step 6">
 
 配置完成后，可以在机器A上使用`telnet IP port`进行测试
 
