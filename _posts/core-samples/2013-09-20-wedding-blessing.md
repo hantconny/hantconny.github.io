@@ -12,7 +12,3 @@ description : Wedding Blessing
 坐了三个小时的长途车，从南京来到了传说中的“南通好家园”（其实是海安啦），不过婚礼现场也唱到这首歌，被陈涛耳濡目染了四年的同窗们都笑了，因为他在宿舍唱太多了。
 
 同学的婚礼总还是有意思的，来回的舟车劳顿也是值得的，anyway，祝福你们。
-
-<br/>
-
-<a href="http://www.flickr.com/photos/hantconny/9849279336/" title="Flickr 上 Will.Cai 的 IMG_0092"><img src="http://farm8.staticflickr.com/7315/9849279336_0c8056dd1a.jpg" width="500" height="375" alt="IMG_0092"></a>

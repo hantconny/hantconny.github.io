@@ -11,7 +11,7 @@ description : Farewell Wedding
 
 <br/>
 
-<a href="http://www.flickr.com/photos/hantconny/4372543388/" title="Flickr 上 Will.Cai 的 000031"><img src="http://farm5.staticflickr.com/4007/4372543388_2f9d260e0e.jpg" width="500" height="345" alt="000031"></a>
+<img src="http://hantconny.github.io/assets/images/2013-05-19/4372543388_43f48ff003_o.jpg" alt="000031">
 
 <br/>
 
