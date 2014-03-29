@@ -13,12 +13,12 @@ description : 记录了如何使用PLSQL Developer连接到局域网内的Oracle
 
 <img src="http://hantconny.github.io/assets/images/2014-03-29/plsql-alert-info.jpg" alt="PLSQL Developer提示信息">
 
-> 值得注意的是，在安装PLSQL Developer时，如果路径中带有括号，会提示你确认PLSQL Developer将来连接的Oracle版本必须是11g及以后版本。
+值得注意的是，在安装PLSQL Developer时，如果路径中带有括号，会提示你确认PLSQL Developer将来连接的Oracle版本必须是11g及以后版本。
 
 ### 解压Oracle Instant Client ###
 从Oracle的网站[下载Instant Client](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)，并解压到本地目录。为了方便携带PLSQL Developer，可以直接解压到`$PLSQL_HOME\instantclient_11_2`，本文其余内容均以`$INSTANTCLIENT_HOME`指代该路径。
 
-> 值得注意的是，即使是在64位的操作系统，也应该选择32位的Instant Client。
+值得注意的是，即使是在64位的操作系统，也应该选择32位的Instant Client。
 
 在`$INSTANTCLIENT_HOME`下建立`\NETWORK\ADMIN`的目录结构，然后将Oracle的`tnsnames.ora`文件拷贝进来。
 
