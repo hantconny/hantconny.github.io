@@ -114,85 +114,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2013/05/19/2013-05-19-farewell-wedding/" data-id="clmiwhbk3000b7kcm9n865ant" data-title="Farewell Wedding" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2013/05/19/2013-05-19-farewell-wedding/" data-id="clmiwzwlq000b34cmdii2e1wx" data-title="Farewell Wedding" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Photographic/" rel="tag">Photographic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wedding/" rel="tag">Wedding</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2013-05-15-validate-jekyll-with-w3c" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2013/05/15/2013-05-15-validate-jekyll-with-w3c/" class="article-date">
-  <time class="dt-published" datetime="2013-05-14T16:00:00.000Z" itemprop="datePublished">2013-05-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2013/05/15/2013-05-15-validate-jekyll-with-w3c/">Jekyll页面的HTML验证</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>在使用Markdown写作时，使用如下语法是一件再平常不过的事情。</p>
-<pre><code># 一级标题 #
-## 二级标题 ##
-### 三级标题 ###
-...
-</code></pre>
-<p>但是，如果我们在文章中使用了如下标题，就需要注意了，这样无法通过W3C的验证。</p>
-<pre><code>#### 安装Jekyll ####
-#### 解决Jekyll中文编码 ####
-...
-</code></pre>
-<p>其原因在于，当Markdown被解释后，生成了如下的HTML代码，很明显ID重复了。</p>
-
-
-    <h3 id="jekyll">安装Jekyll</h3>
-    <h3 id="jekyll">解决Jekyll中文编码</h3>
-
-
-
-<p>但是，以下情形Markdown却可以很好处理。</p>
-<pre><code>### 我是标题 ###
-### 我也是标题 ###
-...
-</code></pre>
-<p>这样的Markdown被解释后会生成类似如下的HTML代码：</p>
-<pre><code>&lt;h3 id=&quot;id1&quot;&gt;我是标题&lt;/h3&gt;
-&lt;h3 id=&quot;id2&quot;&gt;我也是标题&lt;/h3&gt;
-</code></pre>
-<p>所以，在使用Markdown写作时，如果某个标题中出现了英文单词，就要尽量避免在多个标题中出现相同的单词。</p>
-<p>这对于经常写科技文的码农还真不是一个好消息。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2013/05/15/2013-05-15-validate-jekyll-with-w3c/" data-id="clmiwhbjx00067kcm3y3ndyyk" data-title="Jekyll页面的HTML验证" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li></ul>
 
     </footer>
   </div>
@@ -339,11 +265,85 @@ $ git push origin master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2013/05/15/2013-05-15-searching-jekyll-with-tapirgo/" data-id="clmiwhbk1000a7kcmadq8f4ja" data-title="使用Tapir给Jekyll博客添加全文搜索" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2013/05/15/2013-05-15-searching-jekyll-with-tapirgo/" data-id="clmiwzwll000634cm5ice3fc4" data-title="使用Tapir给Jekyll博客添加全文搜索" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tapir/" rel="tag">Tapir</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-15-validate-jekyll-with-w3c" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2013/05/15/2013-05-15-validate-jekyll-with-w3c/" class="article-date">
+  <time class="dt-published" datetime="2013-05-14T16:00:00.000Z" itemprop="datePublished">2013-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2013/05/15/2013-05-15-validate-jekyll-with-w3c/">Jekyll页面的HTML验证</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在使用Markdown写作时，使用如下语法是一件再平常不过的事情。</p>
+<pre><code># 一级标题 #
+## 二级标题 ##
+### 三级标题 ###
+...
+</code></pre>
+<p>但是，如果我们在文章中使用了如下标题，就需要注意了，这样无法通过W3C的验证。</p>
+<pre><code>#### 安装Jekyll ####
+#### 解决Jekyll中文编码 ####
+...
+</code></pre>
+<p>其原因在于，当Markdown被解释后，生成了如下的HTML代码，很明显ID重复了。</p>
+
+
+    <h3 id="jekyll">安装Jekyll</h3>
+    <h3 id="jekyll">解决Jekyll中文编码</h3>
+
+
+
+<p>但是，以下情形Markdown却可以很好处理。</p>
+<pre><code>### 我是标题 ###
+### 我也是标题 ###
+...
+</code></pre>
+<p>这样的Markdown被解释后会生成类似如下的HTML代码：</p>
+<pre><code>&lt;h3 id=&quot;id1&quot;&gt;我是标题&lt;/h3&gt;
+&lt;h3 id=&quot;id2&quot;&gt;我也是标题&lt;/h3&gt;
+</code></pre>
+<p>所以，在使用Markdown写作时，如果某个标题中出现了英文单词，就要尽量避免在多个标题中出现相同的单词。</p>
+<p>这对于经常写科技文的码农还真不是一个好消息。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2013/05/15/2013-05-15-validate-jekyll-with-w3c/" data-id="clmiwzwlo000a34cm165n7i38" data-title="Jekyll页面的HTML验证" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li></ul>
 
     </footer>
   </div>
@@ -408,7 +408,7 @@ $ git push origin master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2013/05/13/2013-05-13-liquid-date-format/" data-id="clmiwhbjv00057kcm98ysacxo" data-title="Liquid日期格式" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2013/05/13/2013-05-13-liquid-date-format/" data-id="clmiwzwlk000534cm8x89bxfn" data-title="Liquid日期格式" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -488,7 +488,7 @@ git push origin master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2013/05/09/2013-05-09-using-jekyll-on-windows/" data-id="clmiwhbjq00017kcm0q3jcfiq" data-title="在Windows上搭建Jekyll博客环境" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2013/05/09/2013-05-09-using-jekyll-on-windows/" data-id="clmiwzwlh000434cm9dixf7u3" data-title="在Windows上搭建Jekyll博客环境" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -545,7 +545,7 @@ git push origin master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2008/06/16/2008-06-16-to-my-father/" data-id="clmiwhbju00047kcm8c6yf3be" data-title="记在父亲节后一天" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2008/06/16/2008-06-16-to-my-father/" data-id="clmiwzwld000134cm9tayb9sp" data-title="记在父亲节后一天" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -609,7 +609,7 @@ git push origin master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2008/06/07/2008-06-07-life/" data-id="clmiwhbjk00007kcmegsh9b4m" data-title="生命" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2008/06/07/2008-06-07-life/" data-id="clmiwzwl7000034cm67a4f0hp" data-title="生命" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
