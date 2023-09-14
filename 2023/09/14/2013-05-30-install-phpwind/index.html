@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>Hello World | Will&#39;s thoughts</title>
+  <title>使用WampServer搭建WAMP环境 | Will&#39;s thoughts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="记录使用WampServer整合安装包搭建WAMP环境, 并安装PHPWIND论坛">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2023/09/14/hello-world/index.html">
+<meta property="og:title" content="使用WampServer搭建WAMP环境">
+<meta property="og:url" content="http://example.com/2023/09/14/2013-05-30-install-phpwind/index.html">
 <meta property="og:site_name" content="Will&#39;s thoughts">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="记录使用WampServer整合安装包搭建WAMP环境, 并安装PHPWIND论坛">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-14T02:24:46.197Z">
-<meta property="article:modified_time" content="2023-09-14T02:24:46.197Z">
+<meta property="article:published_time" content="2023-09-14T07:43:57.252Z">
+<meta property="article:modified_time" content="2023-09-14T07:48:17.407Z">
 <meta property="article:author" content="从前有个包子他睡着了">
+<meta property="article:tag" content="Apache">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="WAMP">
+<meta property="article:tag" content="PHPWIND">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Will's thoughts" type="application/atom+xml">
@@ -75,12 +79,16 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-2013-05-30-install-phpwind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/09/14/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-09-14T02:24:46.197Z" itemprop="datePublished">2023-09-14</time>
+    <a href="/2023/09/14/2013-05-30-install-phpwind/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.252Z" itemprop="datePublished">2023-09-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -89,7 +97,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Hello World
+      使用WampServer搭建WAMP环境
     </h1>
   
 
@@ -97,42 +105,154 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="版本及目录信息"><a href="#版本及目录信息" class="headerlink" title="版本及目录信息"></a>版本及目录信息</h3><p>OS：<code>32位 Window7 Ultimate</code></p>
+<p>Microsoft Visual C++：<code>2010 SP1 Redistributable Package (x86)</code></p>
+<p>WampServer：<code>(32 bits &amp; PHP 5.3) 2.2E</code></p>
+<p>PHPWind：<code>v9.0</code></p>
+<p>WampServer安装目录：<code>C:\wamp</code></p>
+<h3 id="WampServer部分"><a href="#WampServer部分" class="headerlink" title="WampServer部分"></a>WampServer部分</h3><h4 id="WampServer下载"><a href="#WampServer下载" class="headerlink" title="WampServer下载"></a>WampServer下载</h4><p>下载<a target="_blank" rel="noopener" href="http://www.wampserver.com/">WampServer</a></p>
+<h4 id="WampServer安装"><a href="#WampServer安装" class="headerlink" title="WampServer安装"></a>WampServer安装</h4><p>安装Microsoft Visual C++</p>
+<p>安装火狐</p>
+<p>安装WampServer</p>
+<h4 id="WampServer配置"><a href="#WampServer配置" class="headerlink" title="WampServer配置"></a>WampServer配置</h4><p>为了允许非本机访问，需要修改Apache和phpMyAdmin的两个配置文件。</p>
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+<p>找到如下代码</p>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;
+</code></pre>
+<p>修改为</p>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    #    Order Deny,Allow
+    #    Deny from all
+    #    Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<ul>
+<li>修改phpMyAdmin的<code>phpmyadmin.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\alias\</code></p>
+<p>找到</p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    AllowOverride all
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;
+</code></pre>
+<p>修改为</p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    #    AllowOverride all
+    #    Order Deny,Allow
+    #	 Deny from all
+    #	 Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<p>另外，由于WampServer默认没有设置MySQL的密码，所以还需要把MySQL的密码设置起来。</p>
+<ul>
+<li>设置MySQL密码</li>
+</ul>
+<p>在火狐中输入<code>localhost/phpmyadmin</code>进入phpMyAdmin的界面，切换到SQL页面。</p>
+<p>先查询mysql.user表中关于root的信息：</p>
+<pre><code>select * from mysql.user where User = &#39;root&#39;;
+</code></pre>
+<p>然后利用password函数加密明文密码并更新root的密码：</p>
+<pre><code>update mysql.user set Password = password(&#39;ok&#39;) where User = &#39;root&#39;;
+</code></pre>
+<p>最后使修改生效：</p>
+<pre><code>flush privileges;
+</code></pre>
+<p>重启WampServer</p>
+<ul>
+<li>设置phpMyAdmin的<code>config.inc.php</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\apps\phpmyadmin3.5.1\</code></p>
+<p>找到</p>
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;&#39;;
+</code></pre>
+<p>修改为</p>
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;ok&#39;;
+</code></pre>
+<p>重启WampServer</p>
+<h3 id="PHPWind部分"><a href="#PHPWind部分" class="headerlink" title="PHPWind部分"></a>PHPWind部分</h3><h4 id="PHPWind下载"><a href="#PHPWind下载" class="headerlink" title="PHPWind下载"></a>PHPWind下载</h4><p>下载<a target="_blank" rel="noopener" href="http://www.phpwind.com/index.php?m=downloads&a=downloadsphpwind">PHPWind</a></p>
+<h4 id="PHPWind安装"><a href="#PHPWind安装" class="headerlink" title="PHPWind安装"></a>PHPWind安装</h4><p>解压压缩包，并把<code>upload</code>目录下的所有内容复制到<code>C:\wamp\www\</code>目录下</p>
+<pre><code>PHPWind v9.0不要复制upload\.htaccess文件
+</code></pre>
+<p>访问<code>localhost/install.php</code>开始安装</p>
+<h3 id="PS-让Apache能部署多个项目"><a href="#PS-让Apache能部署多个项目" class="headerlink" title="PS:让Apache能部署多个项目"></a>PS:让Apache能部署多个项目</h3><p>这里因为是在给公司测试选型，所以选用同IP，不同端口这种实现方式。由于我对Apache及PHP并不熟悉，只是临时救火，所以按下不表，具体可以参见Apache<a target="_blank" rel="noopener" href="http://httpd.apache.org/docs/2.0/vhosts/examples.html">官网</a>。</p>
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+<p>找到</p>
+<pre><code>Listen 80
+</code></pre>
+<p>修改为</p>
+<pre><code>Listen 80
+Listen 81
+&lt;VirtualHost *:80&gt;   
+    DocumentRoot C:/wamp/www
+    ServerName phpwind
+&lt;/VirtualHost&gt;   
+&lt;VirtualHost *:81&gt;   
+    DocumentRoot C:/wamp/www2
+    ServerName ecshop
+&lt;/VirtualHost&gt;
+...省略若干
+&lt;Directory &quot;c:/wamp/www2/&quot;&gt;
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<p>重启WampServer即可</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/09/14/hello-world/" data-id="clmivcs1b001cywcm0vlie8i7" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2023/09/14/2013-05-30-install-phpwind/" data-id="clmivcs0v000kywcmht1efqkv" data-title="使用WampServer搭建WAMP环境" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHPWIND/" rel="tag">PHPWIND</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/09/14/2013-05-31-change-cmd-path/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
-          hexo的第一篇
+          更改CMD的起始路径
         
       </div>
     </a>
   
+  
+    <a href="/2023/09/14/2013-05-29-copperplate/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">静心养气</div>
+    </a>
   
 </nav>
 

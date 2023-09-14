@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Will&#39;s thoughts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Will&#39;s thoughts">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Will&#39;s thoughts">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="从前有个包子他睡着了">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Will's thoughts" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Will&#39;s thoughts</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2013-05-31-change-cmd-path" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-31-change-cmd-path/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.258Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-31-change-cmd-path/">更改CMD的起始路径</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>打开注册表，展开<code>HKEY_CURRENT_USER\Software\Microsoft\CommandProcessor</code>，新建一个名为AutoRun的字符串值，设置该字符串值为<code>CD /D C:\</code>，这样下次使用CMD的时候，默认路径就是C盘根目录了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-31-change-cmd-path/" data-id="clmivcs0x000mywcmddxyaa72" data-title="更改CMD的起始路径" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CMD/" rel="tag">CMD</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-30-install-phpwind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-30-install-phpwind/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.252Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-30-install-phpwind/">使用WampServer搭建WAMP环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="版本及目录信息"><a href="#版本及目录信息" class="headerlink" title="版本及目录信息"></a>版本及目录信息</h3><p>OS：<code>32位 Window7 Ultimate</code></p>
+<p>Microsoft Visual C++：<code>2010 SP1 Redistributable Package (x86)</code></p>
+<p>WampServer：<code>(32 bits &amp; PHP 5.3) 2.2E</code></p>
+<p>PHPWind：<code>v9.0</code></p>
+<p>WampServer安装目录：<code>C:\wamp</code></p>
+<h3 id="WampServer部分"><a href="#WampServer部分" class="headerlink" title="WampServer部分"></a>WampServer部分</h3><h4 id="WampServer下载"><a href="#WampServer下载" class="headerlink" title="WampServer下载"></a>WampServer下载</h4><p>下载<a target="_blank" rel="noopener" href="http://www.wampserver.com/">WampServer</a></p>
+<h4 id="WampServer安装"><a href="#WampServer安装" class="headerlink" title="WampServer安装"></a>WampServer安装</h4><p>安装Microsoft Visual C++</p>
+<p>安装火狐</p>
+<p>安装WampServer</p>
+<h4 id="WampServer配置"><a href="#WampServer配置" class="headerlink" title="WampServer配置"></a>WampServer配置</h4><p>为了允许非本机访问，需要修改Apache和phpMyAdmin的两个配置文件。</p>
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+<p>找到如下代码</p>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;
+</code></pre>
+<p>修改为</p>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    #    Order Deny,Allow
+    #    Deny from all
+    #    Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<ul>
+<li>修改phpMyAdmin的<code>phpmyadmin.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\alias\</code></p>
+<p>找到</p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    AllowOverride all
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;
+</code></pre>
+<p>修改为</p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    #    AllowOverride all
+    #    Order Deny,Allow
+    #	 Deny from all
+    #	 Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<p>另外，由于WampServer默认没有设置MySQL的密码，所以还需要把MySQL的密码设置起来。</p>
+<ul>
+<li>设置MySQL密码</li>
+</ul>
+<p>在火狐中输入<code>localhost/phpmyadmin</code>进入phpMyAdmin的界面，切换到SQL页面。</p>
+<p>先查询mysql.user表中关于root的信息：</p>
+<pre><code>select * from mysql.user where User = &#39;root&#39;;
+</code></pre>
+<p>然后利用password函数加密明文密码并更新root的密码：</p>
+<pre><code>update mysql.user set Password = password(&#39;ok&#39;) where User = &#39;root&#39;;
+</code></pre>
+<p>最后使修改生效：</p>
+<pre><code>flush privileges;
+</code></pre>
+<p>重启WampServer</p>
+<ul>
+<li>设置phpMyAdmin的<code>config.inc.php</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\apps\phpmyadmin3.5.1\</code></p>
+<p>找到</p>
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;&#39;;
+</code></pre>
+<p>修改为</p>
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;ok&#39;;
+</code></pre>
+<p>重启WampServer</p>
+<h3 id="PHPWind部分"><a href="#PHPWind部分" class="headerlink" title="PHPWind部分"></a>PHPWind部分</h3><h4 id="PHPWind下载"><a href="#PHPWind下载" class="headerlink" title="PHPWind下载"></a>PHPWind下载</h4><p>下载<a target="_blank" rel="noopener" href="http://www.phpwind.com/index.php?m=downloads&a=downloadsphpwind">PHPWind</a></p>
+<h4 id="PHPWind安装"><a href="#PHPWind安装" class="headerlink" title="PHPWind安装"></a>PHPWind安装</h4><p>解压压缩包，并把<code>upload</code>目录下的所有内容复制到<code>C:\wamp\www\</code>目录下</p>
+<pre><code>PHPWind v9.0不要复制upload\.htaccess文件
+</code></pre>
+<p>访问<code>localhost/install.php</code>开始安装</p>
+<h3 id="PS-让Apache能部署多个项目"><a href="#PS-让Apache能部署多个项目" class="headerlink" title="PS:让Apache能部署多个项目"></a>PS:让Apache能部署多个项目</h3><p>这里因为是在给公司测试选型，所以选用同IP，不同端口这种实现方式。由于我对Apache及PHP并不熟悉，只是临时救火，所以按下不表，具体可以参见Apache<a target="_blank" rel="noopener" href="http://httpd.apache.org/docs/2.0/vhosts/examples.html">官网</a>。</p>
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+<p>找到</p>
+<pre><code>Listen 80
+</code></pre>
+<p>修改为</p>
+<pre><code>Listen 80
+Listen 81
+&lt;VirtualHost *:80&gt;   
+    DocumentRoot C:/wamp/www
+    ServerName phpwind
+&lt;/VirtualHost&gt;   
+&lt;VirtualHost *:81&gt;   
+    DocumentRoot C:/wamp/www2
+    ServerName ecshop
+&lt;/VirtualHost&gt;
+...省略若干
+&lt;Directory &quot;c:/wamp/www2/&quot;&gt;
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<p>重启WampServer即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-30-install-phpwind/" data-id="clmivcs0v000kywcmht1efqkv" data-title="使用WampServer搭建WAMP环境" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHPWIND/" rel="tag">PHPWIND</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-29-copperplate" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-29-copperplate/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.247Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-29-copperplate/">静心养气</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>看Downton Abbey的时候听到了双城记，于是去买了一本，还为了凑运费又多买了本悉达多和少年维特的烦恼。</p>
+<p>上班对着电脑是工作需要，下班了还是该找点书看看，只当换一种消遣方式，也压一压日渐抬头的浮躁。虽然07年以后的几年里，身上一度找不到浮躁的气息，但这种与生俱来的东西并没有消失，只是蛰伏了起来，在最近2、3年又羽翼渐丰，开始不断试探。</p>
+<p>既如此，那不妨看书习字，静养些时日吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-29-copperplate/" data-id="clmivcs0s000gywcmh5y55veu" data-title="静心养气" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Copperplate/" rel="tag">Copperplate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Downton-Abbey/" rel="tag">Downton Abbey</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-24-ga-words" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-24-ga-words/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.241Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-24-ga-words/">The Poem</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>The wind will hush
+
+The clouds will part
+
+The rain will stop
+</code></pre>
+<blockquote class="pull-right">
+  <small><cite title="Grey's Anatomy S9E24">Grey's Anatomy S9E24</cite></small>
+</blockquote>
+
+<br/>
+
+<br/>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-24-ga-words/" data-id="clmivcs0n000bywcm589t0n17" data-title="The Poem" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Grey-s-Anatomy/" rel="tag">Grey&#39;s Anatomy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-19-farewell-wedding" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-19-farewell-wedding/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.234Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-19-farewell-wedding/">Farewell Wedding</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>大学同学结婚，从南京到常州，再从常州回南京。这是毕业后参加的第三个婚礼，其本身也只能用盛大来形容。</p>
+<br/>
+
+<img src="http://hantconny.github.io/assets/images/2013-05-19/4372543388_43f48ff003_o.jpg" alt="000031">
+
+<br/>
+
+<blockquote>
+<p>四年前某个午后于江苏大阳台，在一个晒着被子看着姑娘的年纪。</p>
+</blockquote>
+<p>PS:这次居然没有警察叔叔查我身份证。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-19-farewell-wedding/" data-id="clmivcs0r000fywcmcclk2d3q" data-title="Farewell Wedding" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Photographic/" rel="tag">Photographic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wedding/" rel="tag">Wedding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-15-validate-jekyll-with-w3c" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-15-validate-jekyll-with-w3c/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.195Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-15-validate-jekyll-with-w3c/">Jekyll页面的HTML验证</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在使用Markdown写作时，使用如下语法是一件再平常不过的事情。</p>
+<pre><code># 一级标题 #
+## 二级标题 ##
+### 三级标题 ###
+...
+</code></pre>
+<p>但是，如果我们在文章中使用了如下标题，就需要注意了，这样无法通过W3C的验证。</p>
+<pre><code>#### 安装Jekyll ####
+#### 解决Jekyll中文编码 ####
+...
+</code></pre>
+<p>其原因在于，当Markdown被解释后，生成了如下的HTML代码，很明显ID重复了。</p>
+
+
+    <h3 id="jekyll">安装Jekyll</h3>
+    <h3 id="jekyll">解决Jekyll中文编码</h3>
+
+
+
+<p>但是，以下情形Markdown却可以很好处理。</p>
+<pre><code>### 我是标题 ###
+### 我也是标题 ###
+...
+</code></pre>
+<p>这样的Markdown被解释后会生成类似如下的HTML代码：</p>
+<pre><code>&lt;h3 id=&quot;id1&quot;&gt;我是标题&lt;/h3&gt;
+&lt;h3 id=&quot;id2&quot;&gt;我也是标题&lt;/h3&gt;
+</code></pre>
+<p>所以，在使用Markdown写作时，如果某个标题中出现了英文单词，就要尽量避免在多个标题中出现相同的单词。</p>
+<p>这对于经常写科技文的码农还真不是一个好消息。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-15-validate-jekyll-with-w3c/" data-id="clmivcs0m000aywcmgnk30t0x" data-title="Jekyll页面的HTML验证" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-05-13-liquid-date-format" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-05-13-liquid-date-format/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T02:30:48.000Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-05-13-liquid-date-format/">Liquid日期格式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>不是太喜欢archive.html页面里的时间戳，所以修改一下。</p>
+<pre><code>01-Sep-2012
+31-May-2013
+...
+</code></pre>
+<p>修改为</p>
+<pre><code>2012-09-01
+2013-05-31
+...
+</code></pre>
+<p>Google一下，找到Liquid关于日期格式的<a target="_blank" rel="noopener" href="http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012">说明</a>。至于修改，不能直接修改<code>archive.html</code>页面，要修改<code>_includes\JB\posts_collate</code>文件才可以。</p>
+<p>找到</p>
+
+`<span>{{ post.date | date_to_long_string }}</span>`
+
+
+<p>修改为</p>
+
+`<span>{{ post.date | date:"%Y-%m-%d" }}</span>`
+
+
+<p>同样适用于修改<code>_includes\themes\twitter\</code>目录下的<code>post.html</code>模板，但是，<code>post.html</code>文件中是<code>page.date</code>，而不是<code>post.date</code>。</p>
+<h4 id="PS"><a href="#PS" class="headerlink" title="PS:"></a>PS:</h4><p>在写这篇日志的时候还发现，如果要在文章中以文本的形式写Liquid代码的话，可以用<code>&#123;&#123; "&#123;" &#125;&#125;% raw %&#125;</code>和<code>&#123;&#123; "&#123;" &#125;&#125;% endraw %&#125;</code>将Liquid代码包裹起来进行转义，这是一个由Jekyll提供的plugin，很便捷。</p>
+<p>如果不用Jekyll提供的插件，也可以参考<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags">这里</a>的做法。目前我对这个处理方法的理解是：</p>
+<p>可以使用花括号加双引号的组合<code>&#123;&#123;"&#123;&#123;"&#125;&#125;&quot;&#123;&#123;"&#125;&#125;&quot;&#125;&#125;</code>来转义Liquid代码的前半个花括号，这样后半部分的<code>% raw %&#125;</code>就会被当成文本处理掉。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-05-13-liquid-date-format/" data-id="clmivcs0g0005ywcm7bec75eb" data-title="Liquid日期格式" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Liquid/" rel="tag">Liquid</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hexo的第一篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T02:30:48.000Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/">hexo的第一篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="clmivcs2c002qywcmhghu4bsh" data-title="hexo的第一篇" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T02:24:46.197Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/hello-world/" data-id="clmivcs1b001cywcm0vlie8i7" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%BF%B5/">杂念</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/" rel="tag">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Copperplate/" rel="tag">Copperplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DISQUS/" rel="tag">DISQUS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Downton-Abbey/" rel="tag">Downton Abbey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Grey-s-Anatomy/" rel="tag">Grey&#39;s Anatomy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Liquid/" rel="tag">Liquid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Miss-Right/" rel="tag">Miss Right</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPWIND/" rel="tag">PHPWIND</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PLSQL-Developer/" rel="tag">PLSQL Developer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photographic/" rel="tag">Photographic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tapir/" rel="tag">Tapir</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wedding/" rel="tag">Wedding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Bootstrap/" style="font-size: 10px;">Bootstrap</a> <a href="/tags/CMD/" style="font-size: 10px;">CMD</a> <a href="/tags/Copperplate/" style="font-size: 10px;">Copperplate</a> <a href="/tags/DISQUS/" style="font-size: 10px;">DISQUS</a> <a href="/tags/Downton-Abbey/" style="font-size: 10px;">Downton Abbey</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Grey-s-Anatomy/" style="font-size: 10px;">Grey's Anatomy</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/Liquid/" style="font-size: 10px;">Liquid</a> <a href="/tags/Miss-Right/" style="font-size: 10px;">Miss Right</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/PHPWIND/" style="font-size: 10px;">PHPWIND</a> <a href="/tags/PLSQL-Developer/" style="font-size: 10px;">PLSQL Developer</a> <a href="/tags/Photographic/" style="font-size: 15px;">Photographic</a> <a href="/tags/Tapir/" style="font-size: 10px;">Tapir</a> <a href="/tags/WAMP/" style="font-size: 15px;">WAMP</a> <a href="/tags/Wedding/" style="font-size: 15px;">Wedding</a> <a href="/tags/%E6%9D%82%E5%BF%B5/" style="font-size: 20px;">杂念</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/09/14/2013-05-15-searching-jekyll-with-tapirgo/">使用Tapir给Jekyll博客添加全文搜索</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2013-05-09-using-jekyll-on-windows/">在Windows上搭建Jekyll博客环境</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2008-06-16-to-my-father/">记在父亲节后一天</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2008-06-07-life/">生命</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/">PLSQL Developer安装及配置</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 从前有个包子他睡着了<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

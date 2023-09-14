@@ -73,12 +73,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hexo的第一篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-2013-05-15-searching-jekyll-with-tapirgo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/" class="article-date">
-  <time class="dt-published" datetime="2023-09-14T02:30:48.000Z" itemprop="datePublished">2023-09-14</time>
+    <a href="/2023/09/14/2013-05-15-searching-jekyll-with-tapirgo/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.323Z" itemprop="datePublished">2023-09-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -87,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/">hexo的第一篇</a>
+      <a class="p-name article-title" href="/2023/09/14/2013-05-15-searching-jekyll-with-tapirgo/">使用Tapir给Jekyll博客添加全文搜索</a>
     </h1>
   
 
@@ -95,14 +99,123 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>这篇文章的产生，其实首先要感谢<a target="_blank" rel="noopener" href="http://www.shanhh.com/">Dan 单弘昊</a>，请猛戳<a target="_blank" rel="noopener" href="http://www.shanhh.com/blog/2012/11/16/tapir-search-for-jekyll/">这里</a>查看他写的《使用Tapir实现jekyll的站内搜索功能》。</p>
+<p>在这里，仅仅是做一个备忘，并且总结一些错误。</p>
+<h3 id="修改atom-xml文件"><a href="#修改atom-xml文件" class="headerlink" title="修改atom.xml文件"></a>修改atom.xml文件</h3>
+
+    ---
+    layout: nil
+    title : Atom Feed
+    ---
+    <?xml version="1.0" encoding="utf-8"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+     
+     <title>{{ site.title }}</title>
+     <link href="{{ site.production_url }}/{{ site.atom_path }}" rel="self"/>
+     <link href="{{ site.production_url }}"/>
+     <updated>{{ site.time | date_to_xmlschema }}</updated>
+     <id>{{ site.production_url }}</id>
+     <author>
+       <name>{{ site.author.name }}</name>
+       <email>{{ site.author.email }}</email>
+     </author>
+    
+     {% for post in site.posts %}
+     <entry>
+       <title>{{ post.title }}</title>
+       <link href="{{ site.production_url }}{{ post.url }}"/>
+       <updated>{{ post.date | date_to_xmlschema }}</updated>
+       <id>{{ site.production_url }}{{ post.id }}</id>
+       <content type="html">{{ post.content | xml_escape }}</content>
+       <summary type="html">{{ post.description | xml_escape }}</summary>
+     </entry>
+     {% endfor %}
+     
+    </feed>
+
+
+
+<p>以上是修改后的<code>atom.xml</code>文件的全文。与Out of the box的<code>atom.xml</code>文件唯一的区别在于，<code>&lt;entry&gt;</code>节点的最后添加了一段：</p>
+
+`<summary type="html">{{ post.description | xml_escape }}</summary>`
+
+
+<p>添加这段内容的目的在于：搜索出的结果不会直接显示文章的全文，而是只显示文章的摘要。这么做有一点要求，那就是<code>_post</code>目录下，每篇文章的YAML头部都必须包含有<code>description</code>信息；否则在本地启动Jekyll进行预览时会报错，那么可想而知，在GitHub上也同样会报错。</p>
+<pre><code>---
+layout: post
+title: 使用Tapir给Jekyll博客添加全文搜索
+category : Tutorial
+tags : [Tapirgo]
+description : 记录了用Tapir为Jekyll博客添加搜索功能的步骤
+---
+</code></pre>
+<p>以上是本文的YAML头部，给出以作说明。</p>
+<h3 id="提交更改到GitHub"><a href="#提交更改到GitHub" class="headerlink" title="提交更改到GitHub"></a>提交更改到GitHub</h3><pre><code>$ git add .
+$ git commit -m &quot;modify atom.xml&quot;
+$ git push origin master
+</code></pre>
+<h3 id="在Tapir注册atom-xml"><a href="#在Tapir注册atom-xml" class="headerlink" title="在Tapir注册atom.xml"></a>在Tapir注册atom.xml</h3><p>登入<a target="_blank" rel="noopener" href="http://tapirgo.com/">Tapir</a>，并填入<code>atom.xml</code>文件的位置和自己的邮箱，点击那个大大的橘色按钮以后，会生成一个token和一个secret token。本文只会使用到token，所以暂时可以不用在意secret token。</p>
+<h3 id="加入Tapir"><a href="#加入Tapir" class="headerlink" title="加入Tapir"></a>加入Tapir</h3><p>Tapir的搜索用到了jQuery，所以需要加入jQuery和一个处理Tapir搜索的js文件。修改<code>_includes\themes\twitter</code>目录下的<code>default.html</code>文件的<code>&lt;head&gt;</code>部分如下：</p>
+
+
+    <!-- tapiro search -->
+    <script src="{{ ASSET_PATH }}/js/jquery-1.6.1.min.js"></script>
+    <script src="{{ ASSET_PATH }}/js/jquery-tapir.min.js"></script>
+
+
+
+<p>PS：jQuery也可以使用CDN的地址，可以自行Google，但是鉴于国内的环境，还是不要使用Google的CDN地址了。</p>
+<h3 id="在导航条里加搜索框"><a href="#在导航条里加搜索框" class="headerlink" title="在导航条里加搜索框"></a>在导航条里加搜索框</h3><p>这一步对于使用Bootstrap的人来说比较简单，只要修改<code>_includes\themes\twitter</code>目录下的<code>default.html</code>文件即可:</p>
+
+
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+        <ul class="nav">
+        {% assign pages_list = site.pages %}
+        {% assign group = 'navigation' %}
+        {% include JB/pages_list %}
+          <li>
+            <form class="navbar-search" action="search.html" method="get">
+              <input name="query" type="text" class="search-query" placeholder="search">
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+<p>以上是修改后的<code>default.html</code>的导航条片段。值得注意的是，<code>form</code>元素的<code>action</code>地址是<code>search.html</code>，那么接着就该创建<code>search.html</code>了。</p>
+<h3 id="创建search-html"><a href="#创建search-html" class="headerlink" title="创建search.html"></a>创建search.html</h3><p>在<code>username.github.io</code>目录下创建一个<code>search.html</code>，文件内容如下：</p>
+
+
+    ---
+    layout: page
+    title: Search Results
+    header: Search Results
+    ---
+    
+    <div id="search_results">
+    </div>
+    <script>
+      $('#search_results').tapir({'token': '5192e86e3f61b05bbb0009f6'});
+    </script>
+
+
+
+<p>需要关注的是jQuery选择的是ID为<code>search_results</code>的元素，这是<code>search.html</code>页面中用来摆放搜索结果的DIV的ID。另外，请自行替换token的值。</p>
+<p>现在搜索功能就已经完成了，可以先在本地使用<code>$ jekyll serve</code>进行编译和预览，然后再提交到GitHub上。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="clmiv3b5k00011scmfyq061u8" data-title="hexo的第一篇" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2023/09/14/2013-05-15-searching-jekyll-with-tapirgo/" data-id="clmivcs0h0006ywcm0bsi0wv6" data-title="使用Tapir给Jekyll博客添加全文搜索" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tapir/" rel="tag">Tapir</a></li></ul>
+
     </footer>
   </div>
   
@@ -111,12 +224,16 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-2013-05-09-using-jekyll-on-windows" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/09/14/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-09-14T02:24:46.197Z" itemprop="datePublished">2023-09-14</time>
+    <a href="/2023/09/14/2013-05-09-using-jekyll-on-windows/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.311Z" itemprop="datePublished">2023-09-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -125,7 +242,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/09/14/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2023/09/14/2013-05-09-using-jekyll-on-windows/">在Windows上搭建Jekyll博客环境</a>
     </h1>
   
 
@@ -133,27 +250,517 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="安装GitHub-for-Windows"><a href="#安装GitHub-for-Windows" class="headerlink" title="安装GitHub for Windows"></a>安装GitHub for Windows</h3><p>可以直接从GitHub<a target="_blank" rel="noopener" href="http://windows.github.com/">下载</a>，简单的双击安装即可。</p>
+<h3 id="使用Pages"><a href="#使用Pages" class="headerlink" title="使用Pages"></a>使用Pages</h3><p>在GitHub上新建一个Repository，并将该Repository命名为<code>username/username.github.io</code>。这一点可以参考GitHub关于Pages的<a target="_blank" rel="noopener" href="https://help.github.com/articles/user-organization-and-project-pages#user--organization-pages">说明</a>。</p>
+<p>需要注意的是：以前使用Pages时，新建的Repository名称是<code>username/username.github.com</code>，而现在是<code>username/username.github.io</code>。</p>
+<h3 id="安装Jekyll"><a href="#安装Jekyll" class="headerlink" title="安装Jekyll"></a>安装Jekyll</h3><h4 id="Step-One"><a href="#Step-One" class="headerlink" title="Step One"></a>Step One</h4><p>Jekyll的Blog上给出了一个在Windows平台使用Jekyll的<a target="_blank" rel="noopener" href="http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html">解决方案</a>，这里只是简单记录一下版本信息。</p>
+<ul>
+<li>Ruby 1.9.2-p290(XP-32) &#x2F; Ruby 2.0.0-p0(Win7-32)</li>
+<li>DevKit DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe(XP-32) &#x2F; DevKit DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe(Win7-32)</li>
+</ul>
+<p>假定Ruby安装在D盘根目录的Ruby192目录，DevKit解压在D盘根目录的DevKit目录，然后打开CMD。</p>
+<pre><code>cd D:\DevKit
+D:\DevKit&gt;ruby dk.rb init
+D:\DevKit&gt;ruby dk.rb install
+D:\DevKit&gt;gem install jekyll
+</code></pre>
+<h4 id="Step-Two"><a href="#Step-Two" class="headerlink" title="Step Two"></a>Step Two</h4><p>这一步我觉得在Windows上没有那么繁琐。</p>
+<ul>
+<li>先clone自己的<code>username/username.github.io</code>到本地（虽然里面没什么东西）</li>
+<li>然后直接去github上<a target="_blank" rel="noopener" href="https://github.com/plusjade/jekyll-bootstrap">下载</a>Jekyll Bootstrap，然后解压到本地的<code>username.github.io</code>文件夹里面。</li>
+<li>然后在Powershell（装好GitHub for Windows就有）里面操作。</li>
+</ul>
+<p>没什么复杂的，简单的一套git命令</p>
+<pre><code>git add .
+git commit -m &#39;initial load&#39;
+git push origin master
+</code></pre>
+<h4 id="Step-Three"><a href="#Step-Three" class="headerlink" title="Step Three"></a>Step Three</h4><p>最后去浏览器输入<code>username.github.io</code>看下效果。</p>
+<h3 id="注册DISQUS"><a href="#注册DISQUS" class="headerlink" title="注册DISQUS"></a>注册DISQUS</h3><p>这一步相对简单，天朝骚年的英文水平对付这个注册肯定没有问题，所以简单点写。</p>
+<ul>
+<li>site url填<code>username.github.io</code>。</li>
+<li>site name随意。</li>
+<li>site shortname会根据site name生成，但是可以自己改，因为多半情况下是提示已经被占用。</li>
+<li>取消enable promoted discovery。</li>
+<li>然后改本地的<code>username.github.io</code>根目录下的<code>_config.yml</code>文件，找到<code>disqus : &lt;short_name&gt;</code>，改成DISQUS生成的site shortname即可。</li>
+</ul>
+<h3 id="解决Jekyll中文Encoding问题"><a href="#解决Jekyll中文Encoding问题" class="headerlink" title="解决Jekyll中文Encoding问题"></a>解决Jekyll中文Encoding问题</h3><p>找到<code>&lt;RUBY_PATH&gt;\lib\ruby\gems\&lt;RUBY_VERSION&gt;\gems\jekyll-&lt;VERSION&gt;\lib\jekyll\convertible.rb</code>文件，把里面的<code>self.content = File.read(File.join(base, name))</code><br>换成<br><code>self.content = File.read(File.join(base, name), :encoding =&gt; &quot;utf-8&quot;)</code>即可。</p>
+<p>需要注意的是这一行的位置根据Ruby版本的不同也不一样，大致在27行～29行的样子。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/09/14/hello-world/" data-id="clmiv3b5e00001scmaa3c4bjg" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2023/09/14/2013-05-09-using-jekyll-on-windows/" data-id="clmivcs080001ywcm0w28e34j" data-title="在Windows上搭建Jekyll博客环境" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DISQUS/" rel="tag">DISQUS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2008-06-16-to-my-father" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2008-06-16-to-my-father/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.306Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E5%BF%B5/">杂念</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2008-06-16-to-my-father/">记在父亲节后一天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>雨是已经下了很多天，可能和南方的暴雨有关。虽然下了雨以后气温降很多，但是夏天飘这种雨总感觉很怪，也很烦。</p>
+<p>前天晚上，妈妈发短信说她很想我。看到这样的短信，心里的感觉很复杂。</p>
+<p>自从老爸死了以后，妈似乎一下子孤单很多，除了正常上班，伺弄那几盆可怜的花花草草，似乎再没有别的事可以做，连找一个人生气的机会也没有。</p>
+<p>虽然她很少和老爸生气，虽然她曾经说等我上了学就和老爸各管各的。但是我想这只是一个女人的话，而女人的话往往是言不由衷的，或者说她们一直是口是心非的。</p>
+<p>我一直没有从老爸死这件事里面走出来，从一开始就没有。我真的没有准备好，大大小小的影子总是在徘徊，我真的没有办法把一些事情想的那么深入，一旦深入就会陷进去，因为找不到答案而矛盾。表面上我依旧和以前一样，可以没心没肺的说话，但只要静下来就会很想他，千头万绪就像草原的马群一样飞奔过来，碾平一切。我已经麻木到不知道用什么方法来缅怀一个我思念的人，或者说是我太想缅怀他，以至于不想用任何一种粗俗简陋的方法来敷衍。</p>
+<p>我宁愿相信是后者。</p>
+<p>长久的失眠，但究竟是从什么时候开始的，我也不知道，唯一可以确定的是从老爸死后的某一天开始到现在已经很久了。失眠是一件很痛苦的事，不是不想睡，而是睡不着，即使很累却睡不着。</p>
+<p>昨天是父亲节，一个在父亲死后才意识到自己有多想念他的人可能最怕过的就是父亲的生日，忌日，还有父亲节了。如果还有其他可以和父亲相关联的节日，我想他也是怕过的，如果他知道并且爱他父亲的话。我也是在老爸去世以后才渐渐的开始发现其实自己离不开他，一个和自己朝夕相处了20年的人突然就此消失，即使是一件器物，也多少会有点失落感，何况是父亲。</p>
+<p>在我生命的早些几年里，已经模糊了对于他的印象，但后来的日子对现在的我来说是弥足珍贵的。</p>
+<p>我想过写些东西来纪念他，但是只要一触及到他，还有这个混沌的家庭，我的思路就开始混乱，所以只能作罢。</p>
+<p>大二下学期过的很混乱，世界观、价值观等等，一切可以用来形容一个人思想层面的词语，在我都处于一种浑混的状态。我想不通为什么只给我们开那么几节课，老师在埋怨课时越来越少，从开始的120到了后来的100，然后是90，到了我们就只有60、70，这样的课时安排绝对讲不完，于是老师干脆完全浸心于研究，也乐的在茫然中偷懒，草草了事只求不误人子弟；再好学的学生也是求之不得。事实上一开始我并没有抱怨学校的意思，甚至于在别人给学院加诸国骂的时候，我也并不认同。但是久而久之，这种没有答案的矛盾让我也加入进去，甚至是在别人已经无奈认命的时候。我开始无端的谩骂，不满现实，和那些多余人一样，是聪明的废物。其实我有太多想不明白的事情，一些现实中已经是稀松平常到为人接受的但事实上却是扭曲变形的东西。</p>
+<p>大二好像是一个很奇特的时段，就像一个上吊濒死的人一样，上不得天，下不得地，或者说是在垂死挣扎，扫腿喘息。也许我是因为太闲以至于无聊才会发出这样的悲观的言论，但这至少说明了一种状态。没有办法的情况下我只能去买书，一本一本的带回宿舍，一本一本的看。但这仅仅只是为了打发时间，是最低等的状态。</p>
+<p>可能最近几天心情太差，也或者下雨天人心情容易差，所以写的东西都是悲观的论调，但这也是事实，是一些被平常的细小的喜事所掩盖的事实。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2008-06-16-to-my-father/" data-id="clmivcs0d0004ywcmfpxy6762" data-title="记在父亲节后一天" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2008-06-07-life" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2008-06-07-life/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.298Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E5%BF%B5/">杂念</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2008-06-07-life/">生命</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>生命。</p>
+<p>这个词很沉实，因为它会逝去，而更重要的是他带来新生。</p>
+<p>相比较于几年前，现在对乡下的感觉很好，开始羡慕那种荒芜而苍翠的妩媚，那种日出而作，日落而息的规律，也许这个才是真正的生命规律，不会让你失眠头疼，不会让你借助于酒精和尼古丁。</p>
+<p>幻想那个没有人格的时代；没有机器轰鸣的时代；那个以追逐汽车尾气为乐的时代；那个夜不闭户，路不拾遗的时代。</p>
+<p>门口的四棵银杏在不久前已经不属于那个院子的主人，大大小小的主人，包括那两只黄色的猫，他们不能够继续在上面眯眼睡觉了，甚至连蹭个爪子也要到别处去了。也不知道别处的主人是否这么好心，乐意看见树上有不知名的爪痕。</p>
+<p>我自认童年是一个很乖的小孩，不会出去爬树掏鸟，所以对那四棵树没什么感觉，没有回忆。说到回忆，过去的事才能用来回忆，而将来的事则变成了欲望。两个因为时间而不同的概念。</p>
+<p>所以在我听到院子的主人说银杏已经不属于他的时候，我抬起头想留下一点回忆，不愿在不久的将来用欲望去缅怀。</p>
+<p>树根处有泥土开挖的痕迹，还有几根因为雨淋而褪去鲜红的檀香，前天刚刚有过小雨。听院子的主人说，树会在一个好日子动土开挖。</p>
+<p>主干不是很高，大概一托的长度，海碗口大小粗细，嫩芽透出一片绿烟，当然可以想见枝叶繁茂时的荫蔽。也无怪阿猫阿狗会在附近嬉戏徘徊。</p>
+<p>挖掉那四棵银杏其实也还好，院堂的阳光也会更充足点。晒谷子的地方也更大，也不用楼上楼下的来回捣腾地方。不过这是未来的欲望了。乡下的房子总是宽敞的，每间屋子都很高。这样其实住着很舒服，就像一般人看到海会开阔很多，看到乡下的房子心境也敞亮很多。</p>
+<p>在老爸的忌日看到菊茂，在同龄的孩子里面显得高大帅气了很多。</p>
+<p>以前对处于婴儿状态的孩子只是觉着可爱或是希望一类的罢了，从来没有想过说像父辈，也不认为其他人如此之说是夸奖亦或什么。只是觉得多余。</p>
+<p>然而菊茂是个例外，他和叔叔确实很像。</p>
+<p>菊茂这个名字是三爷爷取的，寓意出生在菊花茂盛之时。初听的时候，我蓦然一笑，感觉很女性，但是叫多了以后，倒是很有余韵，渐渐的，也觉得很好听，古朴的东西总是耐人玩味的。</p>
+<p>在那个华丽富有的早春太阳的阴影下，他的样貌是令人喜悦的，有着小孩子特有的气息。穿过油菜的香味和风的声音，在那个地方，我感觉到了生命。</p>
+<p>5个孩子，3男2女。</p>
+<p>小孩子的一生其实在他的童年就一览无余了。菊茂开始很勇敢的开口叫人了，不再腼腆的看着我，一味的笑。在那个有着富丽的阳光的午后，看着他，我很惊喜。</p>
+<p>雨臻，钰琳，文钰，菊茂。</p>
+<p>突然发现他们都是3个字的名字，都温文尔雅，敦厚中多少带了点中庸，着大概也是这个家族特有的品质。</p>
+<p>那一天，我本想掺着谁，看着谁，陪着谁，不过已经没有谁。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2008-06-07-life/" data-id="clmivcrzy0000ywcm3w9t60me" data-title="生命" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2014-03-29-plsqldeveloper-to-connect-to-remote-oracle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.293Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/">PLSQL Developer安装及配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="安装PLSQL-Developer"><a href="#安装PLSQL-Developer" class="headerlink" title="安装PLSQL Developer"></a>安装PLSQL Developer</h3><p>可以直接从allroundautomations的网站<a target="_blank" rel="noopener" href="http://www.allroundautomations.com/plsqldev.html">下载PLSQL Developer</a>，双击安装即可。</p>
+<p>假定PLSQL Developer的安装目录为<code>C:\Program Files (x86)\PLSQL Developer</code>，本文其余内容均以<code>$PLSQL_HOME</code>来指代该路径。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/plsql-alert-info.jpg" alt="PLSQL Developer提示信息">
+
+<p>值得注意的是，在安装PLSQL Developer时，如果路径中带有括号，会提示你确认PLSQL Developer将来连接的Oracle版本必须是11g及以后版本。</p>
+<h3 id="解压Oracle-Instant-Client"><a href="#解压Oracle-Instant-Client" class="headerlink" title="解压Oracle Instant Client"></a>解压Oracle Instant Client</h3><p>从Oracle的网站<a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html">下载Instant Client</a>，并解压到本地目录。为了方便携带PLSQL Developer，可以直接解压到<code>$PLSQL_HOME\instantclient_11_2</code>，本文其余内容均以<code>$INSTANTCLIENT_HOME</code>指代该路径。</p>
+<p>值得注意的是，即使是在64位的操作系统，也应该选择32位的Instant Client。</p>
+<p>在<code>$INSTANTCLIENT_HOME</code>下建立<code>\NETWORK\ADMIN</code>的目录结构，然后将Oracle的<code>tnsnames.ora</code>文件拷贝进来。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/instant-client-structure.jpg" alt="Instant Client结构">
+
+<h3 id="配置PLSQL-Developer"><a href="#配置PLSQL-Developer" class="headerlink" title="配置PLSQL Developer"></a>配置PLSQL Developer</h3><p>首次启动PLSQL Developer时，因为没有进行配置，所以没法登录。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/plsql-login.jpg" alt="PLSQL Developer登录窗口">
+
+<p>点击Cancel进入PLSQL Developer后，依次点击<em>Tools &gt; Preferences</em>，设置好<em>Oracle Home</em>和<em>OCI library</em>，并且选中<em>Check connection</em>，确认后退出PLSQL Developer。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/plsql-setting.jpg" alt="PLSQL Developer设置页面">
+
+<p>重启PLSQL Developer，会发现在Database中已经可以看到tnsnames.ora中的信息了。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/configured-login.jpg" alt="PLSQL Developer配置后的登录窗口">
+
+<p>填入Username和Password，应该能正常登录到远程的Oracle。</p>
+<h3 id="配置Windows防火墙"><a href="#配置Windows防火墙" class="headerlink" title="配置Windows防火墙"></a>配置Windows防火墙</h3><p>有的时候，局域网内的机器A通过PLSQL Developer无法连接到机器B的Oracle，原因可能有很多，这里只说明如何配置机器B的防火墙入站规则。</p>
+<p>打开防火墙的高级设置，选择<em>入站规则</em>，等待视图刷新后，点击右侧的<em>新建规则</em></p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule.jpg" alt="入站规则">
+
+<p>选择端口，点击下一步。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-1.jpg" alt="新建入站规则 Step 1">
+
+<p>如果使用Oracle的默认端口，那么输入1521，如果自定义了Oracle的端口，输入自定义端口。</p>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-2.jpg" alt="新建入站规则 Step 2">
+
+<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-3.jpg" alt="新建入站规则 Step 3">
+
+<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-4.jpg" alt="新建入站规则 Step 4">
+
+<img src="http://hantconny.github.io/assets/images/2014-03-29/inbound-rule-5.jpg" alt="新建入站规则 Step 5">
+
+<p>配置完成后，可以在机器A上使用<code>telnet IP port</code>进行测试</p>
+<h4 id="其他PLSQL-Developer配置"><a href="#其他PLSQL-Developer配置" class="headerlink" title="其他PLSQL Developer配置"></a>其他PLSQL Developer配置</h4><ul>
+<li>自动大写</li>
+</ul>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/uppercase.jpg" alt="自动大写">
+
+<ul>
+<li>单行执行</li>
+</ul>
+<img src="http://hantconny.github.io/assets/images/2014-03-29/single-row.jpg" alt="单行执行">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/" data-id="clmivcs1a0018ywcm69pr5kil" data-title="PLSQL Developer安装及配置" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PLSQL-Developer/" rel="tag">PLSQL Developer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-09-20-wedding-blessing" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-09-20-wedding-blessing/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.287Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-09-20-wedding-blessing/">Wedding Blessing</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>同学结婚，新郎新娘都是大学同窗。</p>
+<p>坐了三个小时的长途车，从南京来到了传说中的“南通好家园”（其实是海安啦），不过婚礼现场也唱到这首歌，被陈涛耳濡目染了四年的同窗们都笑了，因为他在宿舍唱太多了。</p>
+<p>同学的婚礼总还是有意思的，来回的舟车劳顿也是值得的，anyway，祝福你们。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-09-20-wedding-blessing/" data-id="clmivcs180014ywcm1ara5lmv" data-title="Wedding Blessing" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Photographic/" rel="tag">Photographic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wedding/" rel="tag">Wedding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-09-10-she-leaves" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-09-10-she-leaves/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.281Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-09-10-she-leaves/">47天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一段47天的生活结束后，她还是走了。</p>
+<p>没有很意外，倒是有一种如释重负的感觉。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-09-10-she-leaves/" data-id="clmivcs170010ywcm8fc0gcwr" data-title="47天" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-08-13-new-job" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-08-13-new-job/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.275Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-08-13-new-job/">新工作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>离开特维。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-08-13-new-job/" data-id="clmivcs15000xywcm3u2tdgvk" data-title="新工作" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-07-27-miss-right" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-07-27-miss-right/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.269Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-07-27-miss-right/">Miss Right</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Jul. 8, 2013</p>
+<p>She might be my miss right.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-07-27-miss-right/" data-id="clmivcs13000sywcmc37ybe1u" data-title="Miss Right" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Miss-Right/" rel="tag">Miss Right</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2013-06-02-enable-short-tag-in-wampserver" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/14/2013-06-02-enable-short-tag-in-wampserver/" class="article-date">
+  <time class="dt-published" datetime="2023-09-14T07:43:57.263Z" itemprop="datePublished">2023-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/14/2013-06-02-enable-short-tag-in-wampserver/">在WampServer中开启短标签</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>还是在给公司项目做选型，碰到一个用<a target="_blank" rel="noopener" href="http://twitter.github.io/bootstrap/">Bootstrap</a>作为前端框架的<a target="_blank" rel="noopener" href="http://www.startbbs.com/">StartBBS</a>，正好前段时间得空看过，所以王八看绿豆，直接对上眼了。</p>
+<p>不过安装完以后就报错了，论坛里也有相同错误的求助帖，但是都没有提到解决方案，只露出一点关于PHP短标签的线索，所以按图索骥Google了一下，找到了<a target="_blank" rel="noopener" href="http://blog.gishome.org/post-9.html">解决方案</a>。</p>
+<h3 id="版本及目录信息"><a href="#版本及目录信息" class="headerlink" title="版本及目录信息"></a>版本及目录信息</h3><p>OS：<code>32位 Window7 Ultimate</code></p>
+<p>WampServer：<code>(32 bits &amp; PHP 5.3) 2.2E</code></p>
+<p>WampServer安装目录：<code>C:\wamp</code></p>
+<h3 id="修改Apache目录下的php-ini文件"><a href="#修改Apache目录下的php-ini文件" class="headerlink" title="修改Apache目录下的php.ini文件"></a>修改Apache目录下的<code>php.ini</code>文件</h3><p>路径：<code>C:\wamp\bin\apache\apache2.2.22\bin\php.ini</code></p>
+<p>找到</p>
+<pre><code>short_open_tag = Off
+</code></pre>
+<p>修改成</p>
+<pre><code>short_open_tag = On
+</code></pre>
+<h3 id="修改PHP目录下的php-ini文件"><a href="#修改PHP目录下的php-ini文件" class="headerlink" title="修改PHP目录下的php.ini文件"></a>修改PHP目录下的<code>php.ini</code>文件</h3><p>路径：<code>C:\wamp\bin\php\php5.3.13\php.ini</code></p>
+<p>找到</p>
+<pre><code>short_open_tag = Off
+</code></pre>
+<p>修改成</p>
+<pre><code>short_open_tag = On
+</code></pre>
+<h3 id="修改站点目录下的config-php文件"><a href="#修改站点目录下的config-php文件" class="headerlink" title="修改站点目录下的config.php文件"></a>修改站点目录下的<code>config.php</code>文件</h3><p>例如我把StartBBS安装在<code>C:\wamp\www3\</code>下，那么该<code>config.php</code>文件的路径就是<code>C:\wamp\www3\app\config\config.php</code></p>
+<p>找到</p>
+<pre><code>$config[&#39;rewrite_short_tags&#39;]
+</code></pre>
+<p>确保该配置的值是</p>
+<pre><code>$config[&#39;rewrite_short_tags&#39;] = true;
+</code></pre>
+<p>重启WampServer即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/09/14/2013-06-02-enable-short-tag-in-wampserver/" data-id="clmivcs11000qywcm8ski0ywm" data-title="在WampServer中开启短标签" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/" rel="tag">Bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li></ul>
+
     </footer>
   </div>
   
@@ -163,18 +770,44 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
 
 </section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%87%E5%BF%98/">备忘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%BF%B5/">杂念</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/" rel="tag">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Copperplate/" rel="tag">Copperplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DISQUS/" rel="tag">DISQUS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Downton-Abbey/" rel="tag">Downton Abbey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Grey-s-Anatomy/" rel="tag">Grey&#39;s Anatomy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Liquid/" rel="tag">Liquid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Miss-Right/" rel="tag">Miss Right</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPWIND/" rel="tag">PHPWIND</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PLSQL-Developer/" rel="tag">PLSQL Developer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photographic/" rel="tag">Photographic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tapir/" rel="tag">Tapir</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wedding/" rel="tag">Wedding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Bootstrap/" style="font-size: 10px;">Bootstrap</a> <a href="/tags/CMD/" style="font-size: 10px;">CMD</a> <a href="/tags/Copperplate/" style="font-size: 10px;">Copperplate</a> <a href="/tags/DISQUS/" style="font-size: 10px;">DISQUS</a> <a href="/tags/Downton-Abbey/" style="font-size: 10px;">Downton Abbey</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Grey-s-Anatomy/" style="font-size: 10px;">Grey's Anatomy</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/Liquid/" style="font-size: 10px;">Liquid</a> <a href="/tags/Miss-Right/" style="font-size: 10px;">Miss Right</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/PHPWIND/" style="font-size: 10px;">PHPWIND</a> <a href="/tags/PLSQL-Developer/" style="font-size: 10px;">PLSQL Developer</a> <a href="/tags/Photographic/" style="font-size: 15px;">Photographic</a> <a href="/tags/Tapir/" style="font-size: 10px;">Tapir</a> <a href="/tags/WAMP/" style="font-size: 15px;">WAMP</a> <a href="/tags/Wedding/" style="font-size: 15px;">Wedding</a> <a href="/tags/%E6%9D%82%E5%BF%B5/" style="font-size: 20px;">杂念</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -193,11 +826,23 @@
       <ul>
         
           <li>
-            <a href="/2023/09/14/hexo%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87/">hexo的第一篇</a>
+            <a href="/2023/09/14/2013-05-15-searching-jekyll-with-tapirgo/">使用Tapir给Jekyll博客添加全文搜索</a>
           </li>
         
           <li>
-            <a href="/2023/09/14/hello-world/">Hello World</a>
+            <a href="/2023/09/14/2013-05-09-using-jekyll-on-windows/">在Windows上搭建Jekyll博客环境</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2008-06-16-to-my-father/">记在父亲节后一天</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2008-06-07-life/">生命</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/14/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/">PLSQL Developer安装及配置</a>
           </li>
         
       </ul>
