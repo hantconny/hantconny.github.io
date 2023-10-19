@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   
   
-  <title>归档 | Will&#39;s thoughts</title>
+  <title>Will&#39;s thoughts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Will&#39;s thoughts">
-<meta property="og:url" content="http://hantconny.github.io/archives/page/3/index.html">
+<meta property="og:url" content="http://hantconny.github.io/page/9/index.html">
 <meta property="og:site_name" content="Will&#39;s thoughts">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="从前有个包子他睡着了">
@@ -73,80 +73,173 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2013" class="archive-year">2013</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2013/06/02/2013-06-02-enable-short-tag-in-wampserver/" class="archive-article-date">
-  <time class="dt-published" datetime="2013-06-01T16:00:00.000Z" itemprop="datePublished">6月 2</time>
+    <article id="post-2013-05-30-install-phpwind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2013/05/30/2013-05-30-install-phpwind/" class="article-date">
+  <time class="dt-published" datetime="2013-05-29T16:00:00.000Z" itemprop="datePublished">2013-05-30</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/onenote/">onenote</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/06/02/2013-06-02-enable-short-tag-in-wampserver/">在WampServer中开启短标签</a>
+      <a class="p-name article-title" href="/2013/05/30/2013-05-30-install-phpwind/">使用WampServer搭建WAMP环境</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2013/05/31/2013-05-31-change-cmd-path/" class="archive-article-date">
-  <time class="dt-published" datetime="2013-05-30T16:00:00.000Z" itemprop="datePublished">5月 31</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/05/31/2013-05-31-change-cmd-path/">更改CMD的起始路径</a>
-    </h1>
-  
+        <h3 id="版本及目录信息"><a href="#版本及目录信息" class="headerlink" title="版本及目录信息"></a>版本及目录信息</h3><p>OS：<code>32位 Window7 Ultimate</code></p>
+<p>Microsoft Visual C++：<code>2010 SP1 Redistributable Package (x86)</code></p>
+<p>WampServer：<code>(32 bits &amp; PHP 5.3) 2.2E</code></p>
+<p>PHPWind：<code>v9.0</code></p>
+<p>WampServer安装目录：<code>C:\wamp</code></p>
+<h3 id="WampServer部分"><a href="#WampServer部分" class="headerlink" title="WampServer部分"></a>WampServer部分</h3><h4 id="WampServer下载"><a href="#WampServer下载" class="headerlink" title="WampServer下载"></a>WampServer下载</h4><p>下载<a target="_blank" rel="noopener" href="http://www.wampserver.com/">WampServer</a></p>
+<h4 id="WampServer安装"><a href="#WampServer安装" class="headerlink" title="WampServer安装"></a>WampServer安装</h4><p>安装Microsoft Visual C++</p>
+<p>安装火狐</p>
+<p>安装WampServer</p>
+<h4 id="WampServer配置"><a href="#WampServer配置" class="headerlink" title="WampServer配置"></a>WampServer配置</h4><p>为了允许非本机访问，需要修改Apache和phpMyAdmin的两个配置文件。</p>
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+<p>找到如下代码</p>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;
+</code></pre>
+<p>修改为</p>
+<pre><code>&lt;Directory &quot;c:/wamp/www/&quot;&gt;
+    ...省略若干注释
+    #    onlineoffline tag - don&#39;t remove
+    #    Order Deny,Allow
+    #    Deny from all
+    #    Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<ul>
+<li>修改phpMyAdmin的<code>phpmyadmin.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\alias\</code></p>
+<p>找到</p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    AllowOverride all
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+&lt;/Directory&gt;
+</code></pre>
+<p>修改为</p>
+<pre><code>&lt;Directory &quot;c:/wamp/apps/phpmyadmin3.5.1/&quot;&gt;
+    #    Options Indexes FollowSymLinks MultiViews
+    #    AllowOverride all
+    #    Order Deny,Allow
+    #	 Deny from all
+    #	 Allow from 127.0.0.1
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<p>另外，由于WampServer默认没有设置MySQL的密码，所以还需要把MySQL的密码设置起来。</p>
+<ul>
+<li>设置MySQL密码</li>
+</ul>
+<p>在火狐中输入<code>localhost/phpmyadmin</code>进入phpMyAdmin的界面，切换到SQL页面。</p>
+<p>先查询mysql.user表中关于root的信息：</p>
+<pre><code>select * from mysql.user where User = &#39;root&#39;;
+</code></pre>
+<p>然后利用password函数加密明文密码并更新root的密码：</p>
+<pre><code>update mysql.user set Password = password(&#39;ok&#39;) where User = &#39;root&#39;;
+</code></pre>
+<p>最后使修改生效：</p>
+<pre><code>flush privileges;
+</code></pre>
+<p>重启WampServer</p>
+<ul>
+<li>设置phpMyAdmin的<code>config.inc.php</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\apps\phpmyadmin3.5.1\</code></p>
+<p>找到</p>
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;&#39;;
+</code></pre>
+<p>修改为</p>
+<pre><code>$cfg[&#39;Servers&#39;][$i][&#39;password&#39;] = &#39;ok&#39;;
+</code></pre>
+<p>重启WampServer</p>
+<h3 id="PHPWind部分"><a href="#PHPWind部分" class="headerlink" title="PHPWind部分"></a>PHPWind部分</h3><h4 id="PHPWind下载"><a href="#PHPWind下载" class="headerlink" title="PHPWind下载"></a>PHPWind下载</h4><p>下载<a target="_blank" rel="noopener" href="http://www.phpwind.com/index.php?m=downloads&a=downloadsphpwind">PHPWind</a></p>
+<h4 id="PHPWind安装"><a href="#PHPWind安装" class="headerlink" title="PHPWind安装"></a>PHPWind安装</h4><p>解压压缩包，并把<code>upload</code>目录下的所有内容复制到<code>C:\wamp\www\</code>目录下</p>
+<pre><code>PHPWind v9.0不要复制upload\.htaccess文件
+</code></pre>
+<p>访问<code>localhost/install.php</code>开始安装</p>
+<h3 id="PS-让Apache能部署多个项目"><a href="#PS-让Apache能部署多个项目" class="headerlink" title="PS:让Apache能部署多个项目"></a>PS:让Apache能部署多个项目</h3><p>这里因为是在给公司测试选型，所以选用同IP，不同端口这种实现方式。由于我对Apache及PHP并不熟悉，只是临时救火，所以按下不表，具体可以参见Apache<a target="_blank" rel="noopener" href="http://httpd.apache.org/docs/2.0/vhosts/examples.html">官网</a>。</p>
+<ul>
+<li>修改Apache的<code>httpd.conf</code>文件</li>
+</ul>
+<p>路径：<code>C:\wamp\bin\apache\apache2.2.22\conf\</code></p>
+<p>找到</p>
+<pre><code>Listen 80
+</code></pre>
+<p>修改为</p>
+<pre><code>Listen 80
+Listen 81
+&lt;VirtualHost *:80&gt;   
+    DocumentRoot C:/wamp/www
+    ServerName phpwind
+&lt;/VirtualHost&gt;   
+&lt;VirtualHost *:81&gt;   
+    DocumentRoot C:/wamp/www2
+    ServerName ecshop
+&lt;/VirtualHost&gt;
+...省略若干
+&lt;Directory &quot;c:/wamp/www2/&quot;&gt;
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+<p>重启WampServer即可</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2013/05/30/2013-05-30-install-phpwind/" class="archive-article-date">
-  <time class="dt-published" datetime="2013-05-29T16:00:00.000Z" itemprop="datePublished">5月 30</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/05/30/2013-05-30-install-phpwind/">使用WampServer搭建WAMP环境</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hantconny.github.io/2013/05/30/2013-05-30-install-phpwind/" data-id="clmj3aydn000s6scm6ggff7j0" data-title="使用WampServer搭建WAMP环境" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHPWIND/" rel="tag">PHPWIND</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
+
   
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/4/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/10/">下一页 &raquo;</a>
   </nav>
 
 </section>
