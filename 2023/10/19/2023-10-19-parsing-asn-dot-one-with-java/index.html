@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用Java解析ASN.1 | Will&#39;s thoughts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="记录了如何使用Java解析ASN.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Java解析ASN.1">
+<meta property="og:url" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/index.html">
+<meta property="og:site_name" content="Will&#39;s thoughts">
+<meta property="og:description" content="记录了如何使用Java解析ASN.1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722134144587.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722134209068.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722141017580.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722141434129.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722141739266.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722092908565.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722092956962.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722093023493.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142002679.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142400290.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142512977.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142542092.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142742407.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722093901629.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722143130451.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722143345046.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722095507894.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722095828313.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722095926071.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722100057076.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722144721192.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722100549093.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722101048043.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145106378.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145416807.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145533160.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145820023.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722110912075.png">
+<meta property="og:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722111541552.png">
+<meta property="article:published_time" content="2023-10-19T06:02:39.000Z">
+<meta property="article:modified_time" content="2023-10-19T06:19:28.360Z">
+<meta property="article:author" content="从前有个包子他睡着了">
+<meta property="article:tag" content="ASN.1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722134144587.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Will's thoughts" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Will&#39;s thoughts</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2023-10-19-parsing-asn-dot-one-with-java" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/" class="article-date">
+  <time class="dt-published" datetime="2023-10-19T06:02:39.000Z" itemprop="datePublished">2023-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用Java解析ASN.1
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>ASN.1解析包含两部分，一份是定义文件，一份是数据文件。以<code>*.ASN</code>为后缀的文件是定义文件，一般为结构化的明文文本；以<code>*.dat</code>为后缀的文件是数据文件，里面的内容是编码后的数据，需要解析后才能识别。</p>
+<ul>
+<li><code>*.ASN</code>文件样例</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">-- ASN.1 Formal Description</span><br><span class="line">HMSC DEFINITIONS IMPLICIT TAGS ::=</span><br><span class="line">BEGIN</span><br><span class="line">Chargingdatarecord ::= SEQUENCE</span><br><span class="line">&#123;</span><br><span class="line">    header [0] Header,</span><br><span class="line">    sequenceCDR [1] SequenceCDR,</span><br><span class="line">    trailer [2] Trailer,</span><br><span class="line">    extension [3] Extension</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Header ::= SET</span><br><span class="line">&#123;</span><br><span class="line">    headerTimeStamp [0] HeaderTimeStamp,</span><br><span class="line">    recordingEntity [1] RecordingEntity,</span><br><span class="line">    extensions [2] Extensions</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HeaderTimeStamp ::= TimeStamp</span><br><span class="line"></span><br><span class="line">SequenceCDR ::= SEQUENCE OF CDR</span><br><span class="line"></span><br><span class="line">CDR ::= CHOICE</span><br><span class="line">&#123;</span><br><span class="line">    mobileOriginated              [0]            MobileOriginated           ,</span><br><span class="line">    callForwarding                [100]          CallForwarding             ,</span><br><span class="line">    mobileTerminated              [1]            MobileTerminated           ,</span><br><span class="line">    roamingRecord                 [2]            RoamingRecord              ,</span><br><span class="line">    incomingGatewayRecord         [3]            IncomingGatewayRecord      ,</span><br><span class="line">    outgoingGatewayRecord         [4]            OutgoingGatewayRecord      ,</span><br><span class="line">    transit                       [5]            Transit                    ,</span><br><span class="line">    sMSMobileOriginated           [6]            SMSMobileOriginated        ,</span><br><span class="line">    sMSMobileTerminated           [7]            SMSMobileTerminated        ,</span><br><span class="line">    lCSMTRecord                   [17]           LCSMTRecord                ,</span><br><span class="line">    lCSMORecord                   [18]           LCSMORecord                ,</span><br><span class="line">    lCSNIRecord                   [19]           LCSNIRecord                ,</span><br><span class="line">    supplementaryService          [10]           SupplementaryService       ,</span><br><span class="line">    hLRInterrogation              [11]           HLRInterrogation           ,</span><br><span class="line">    commonEquipmentUsageRecord    [14]           CommonEquipmentUsageRecord ,</span><br><span class="line">    terminatingCAMEL              [16]           TerminatingCAMEL           ,</span><br><span class="line">    locationUpdate                [13]           LocationUpdate    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>*.dat</code>文件样例</li>
+</ul>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722134144587.png" alt="image-20220722134144587"></p>
+<ul>
+<li><code>*.dat</code>文件16进制样例</li>
+</ul>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722134209068.png" alt="image-20220722134209068"></p>
+<p>使用Java解析ASN.1需要使用一些第三方的工具，如asn1bean，其前身是jASN1。</p>
+<p>整个解析过程如下：</p>
+<ol>
+<li>使用定义文件生成对应的Java文件</li>
+<li>读入数据文件并封装到对应的Java对象中</li>
+</ol>
+<h2 id="ASN-1数据类型"><a href="#ASN-1数据类型" class="headerlink" title="ASN.1数据类型"></a>ASN.1数据类型</h2><p>常见的数据类型：</p>
+<table>
+<thead>
+<tr>
+<th>ASN.1类型</th>
+<th>Java类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OCTET STRING</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>数值</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>布尔</td>
+</tr>
+<tr>
+<td>ENUMERATED</td>
+<td>枚举</td>
+</tr>
+<tr>
+<td>TimeStamp</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>对象</td>
+</tr>
+<tr>
+<td>SEQUENCE</td>
+<td>集合</td>
+</tr>
+</tbody></table>
+<p>特例：</p>
+<table>
+<thead>
+<tr>
+<th>ASN.1类型</th>
+<th>Java类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SEQUENCE OF CDR</td>
+<td>CDR对象的集合，CDR为ASN1中的SET</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>暂时不确定的值</td>
+</tr>
+</tbody></table>
+<p>ASN.1示例文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-- 双-作为注释</span><br><span class="line">-- ASN.1 Formal Description</span><br><span class="line">HMSC DEFINITIONS IMPLICIT TAGS ::=</span><br><span class="line">BEGIN</span><br><span class="line">-- 一般最外层类定义在最上面，Chargingdatarecord的类型是SEQUENCE，是ASN.1原生的集合类型</span><br><span class="line">-- ::=后面的是数据类型</span><br><span class="line">Chargingdatarecord ::= SEQUENCE</span><br><span class="line">&#123;</span><br><span class="line">    -- header的类型是Header，而Header是自定义的类型，需要自行定义</span><br><span class="line">    header      [0] Header,</span><br><span class="line">    -- sequenceCDR的类型是SequenceCDR，也是自定义的类型</span><br><span class="line">    sequenceCDR [1] SequenceCDR,</span><br><span class="line">	-- Trailer和Extension也一样，都是自定义的类型</span><br><span class="line">	trailer     [2] Trailer,</span><br><span class="line">    extension   [3] Extension</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-- HeaderTimeStamp的类型是TimeStamp，是ASN.1原生的时间戳类型</span><br><span class="line">HeaderTimeStamp ::= TimeStamp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- Header的类型是SET，是ASN.1原生的对象类型</span><br><span class="line">Header ::= SET</span><br><span class="line">&#123;</span><br><span class="line">    headerTimeStamp [0] HeaderTimeStamp,</span><br><span class="line">    recordingEntity [1] RecordingEntity,</span><br><span class="line">    extensions      [2] Extensions</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- SequenceCDR的类型是SEQUENCE OF CDR，首先是一个SEQUENCE集合，其次是CDR类型的集合</span><br><span class="line">SequenceCDR ::= SEQUENCE OF CDR</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-- CHOICE表明CDR类中都有哪些类型</span><br><span class="line">-- 本案中使用到的，如mobileOriginated，mobileTerminated，transit，sMSMobileOriginated，sMSMobileTerminated等</span><br><span class="line">CDR ::= CHOICE</span><br><span class="line">&#123;</span><br><span class="line">    mobileOriginated            [0]            MobileOriginated,</span><br><span class="line">    -- tag的顺序编号无所谓，不影响Java代码生成和解析</span><br><span class="line">    callForwarding              [100]          CallForwarding,</span><br><span class="line">    mobileTerminated            [1]            MobileTerminated,</span><br><span class="line">    roamingRecord               [2]            RoamingRecord,</span><br><span class="line">    incomingGatewayRecord       [3]            IncomingGatewayRecord,</span><br><span class="line">    outgoingGatewayRecord       [4]            OutgoingGatewayRecord,</span><br><span class="line">    transit                     [5]            Transit,</span><br><span class="line">    sMSMobileOriginated         [6]            SMSMobileOriginated,</span><br><span class="line">    sMSMobileTerminated         [7]            SMSMobileTerminated,</span><br><span class="line">    lCSMTRecord                 [17]           LCSMTRecord,</span><br><span class="line">    lCSMORecord                 [18]           LCSMORecord,</span><br><span class="line">    lCSNIRecord                 [19]           LCSNIRecord,</span><br><span class="line">    supplementaryService        [10]           SupplementaryService,</span><br><span class="line">    hLRInterrogation            [11]           HLRInterrogation,</span><br><span class="line">    commonEquipmentUsageRecord  [14]           CommonEquipmentUsageRecord,</span><br><span class="line">    terminatingCAMEL            [16]           TerminatingCAMEL,</span><br><span class="line">    locationUpdate              [13]           LocationUpdate    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 有些字段在生成Java文件时提示缺少该类的定义，那么可以先定义为NULL，后面如果确实需要使用，再根据华为的文档去补充。</span><br><span class="line">VasType     ::= NULL</span><br><span class="line">WpsCallFlag ::= NULL</span><br><span class="line">LRNSource   ::= NULL</span><br><span class="line">DrcCallRN   ::= NULL</span><br><span class="line">DrcCallId   ::= NULL</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="asn1bean工具"><a href="#asn1bean工具" class="headerlink" title="asn1bean工具"></a>asn1bean工具</h2><p>目录结构如下，省略了一些不相干的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">asb1bean</span><br><span class="line">├── bin</span><br><span class="line">│   ├── asn1bean-compiler</span><br><span class="line">│   └── asn1bean-compiler.bat</span><br><span class="line">├── build</span><br><span class="line">│   └── libs-all</span><br><span class="line">│       ├── antlr-2.7.7.jar</span><br><span class="line">│       ├── asn1bean-1.13.0.jar</span><br><span class="line">│       └── asn1bean-compiler-1.13.0.jar</span><br><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar</span><br><span class="line">│       └── gradle-wrapper.properties</span><br><span class="line">├── gradlew</span><br><span class="line">├── gradlew.bat</span><br></pre></td></tr></table></figure>
+
+<p>.&#x2F;build&#x2F;libs-all&#x2F;下有两个jar包：</p>
+<ul>
+<li>asn1bean-compiler-1.13.0.jar</li>
+</ul>
+<p>根据定义文件生成Java文件需要该jar包，asn1bean-compiler.bat和asn1bean-compiler调用的就是这个jar包。</p>
+<ul>
+<li>asn1bean-1.13.0.jar</li>
+</ul>
+<p>生成的Java文件在编译时依赖该jar包，加入到具体项目时需要将该jar包添加到pom中。里面定义了一些依赖，如BerTag等。</p>
+<p>使用asn1bean-compiler.bat或asn1bean-compiler就可以根据定义文件生成Java文件，指令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## -f 参数指定定义文件</span></span><br><span class="line"><span class="comment">## -p 文件指定生成Java文件的package名</span></span><br><span class="line">$ asn1bean-compiler.bat -f <span class="string">&quot;&lt;ASN_FILE_LOCATION&gt;&quot;</span> -p <span class="string">&quot;&lt;JAVA_PACKAGE_NAME&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ asn1bean-compiler.bat -f <span class="string">&quot;C:\Users\Administrator\Desktop\Zamtel_HW_Msc\2021-01-01\HuaweiMSC_V1_RX.ASN.modified&quot;</span> -p <span class="string">&quot;com.sinovatio.shark.bean.asn1.zamtel&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="生成Java文件"><a href="#生成Java文件" class="headerlink" title="生成Java文件"></a>生成Java文件</h2><p>根据定义文件生成Java文件的过程中会出现一些错误，常见的错误原因有：注释引起的解析错误，类型定义未找到等。</p>
+<h3 id="注释引起的解析错误1"><a href="#注释引起的解析错误1" class="headerlink" title="注释引起的解析错误1"></a>注释引起的解析错误1</h3><p><strong>错误提示</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 提示1118行第37个字符有问题，遇到了非预期的&#x27;-&#x27;</span></span><br><span class="line">Generated code will be saved <span class="keyword">in</span> ./</span><br><span class="line">Parsing <span class="string">&quot;C:\Users\Administrator\Desktop\Zamtel_HW_Msc\2021-01-01\HuaweiMSC_V1_RX.ASN.original&quot;</span></span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> line 1118:37: unexpected char: <span class="string">&#x27;-&#x27;</span></span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNLexer.nextToken(ASNLexer.java:334)</span><br><span class="line">        at antlr.TokenBuffer.fill(TokenBuffer.java:69)</span><br><span class="line">        at antlr.TokenBuffer.LA(TokenBuffer.java:80)</span><br><span class="line">        at antlr.LLkParser.LA(LLkParser.java:52)</span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNParser.module_body(ASNParser.java:301)</span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNParser.module_definition(ASNParser.java:182)</span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNParser.module_definitions(ASNParser.java:58)</span><br><span class="line">        at com.beanit.asn1bean.compiler.Compiler.getJavaModelFromAsn1File(Compiler.java:129)</span><br><span class="line">        at com.beanit.asn1bean.compiler.Compiler.main(Compiler.java:106)</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722141017580.png" alt="image-20220722141017580"></p>
+<p><strong>解决方案</strong>：</p>
+<p>根据ASN.1的规范，注释以<code>--</code>开头，以<code>--</code>或行结束符结尾，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-- this is comments end with double dash --</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-- this is comments end with crlf</span><br></pre></td></tr></table></figure>
+
+<p>错误的原因是LEAF NODES前面的<code>-</code>有37个，没有成对出现，所以解析报错。而实际操作中，即使<code>-</code>成对出现，有的也会提示其他错误，如花括号不匹配，缺少END标记等。所以简单粗暴且一劳永逸的解决方法是删除注释。这里应该也有asn1bean工具解析的问题。</p>
+<h3 id="注释引起的解析错误2"><a href="#注释引起的解析错误2" class="headerlink" title="注释引起的解析错误2"></a>注释引起的解析错误2</h3><p><strong>错误提示</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 提示1500行第90个字符有非预期的&#x27;*&#x27;</span></span><br><span class="line">Generated code will be saved <span class="keyword">in</span> ./</span><br><span class="line">Parsing <span class="string">&quot;C:\Users\Administrator\Desktop\Zamtel_HW_Msc\2021-01-01\HuaweiMSC_V1_RX.ASN.demo&quot;</span></span><br><span class="line">line 1500:67: expecting <span class="string">&quot;END&quot;</span>, found <span class="string">&#x27;SEQUENCE&#x27;</span></span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> line 1500:90: unexpected char: <span class="string">&#x27;*&#x27;</span></span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNLexer.nextToken(ASNLexer.java:334)</span><br><span class="line">        at antlr.TokenBuffer.fill(TokenBuffer.java:69)</span><br><span class="line">        at antlr.TokenBuffer.LA(TokenBuffer.java:80)</span><br><span class="line">        at antlr.LLkParser.LA(LLkParser.java:52)</span><br><span class="line">        at antlr.Parser.consumeUntil(Parser.java:149)</span><br><span class="line">        at antlr.Parser.recover(Parser.java:312)</span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNParser.module_definition(ASNParser.java:188)</span><br><span class="line">        at com.beanit.asn1bean.compiler.parser.ASNParser.module_definitions(ASNParser.java:58)</span><br><span class="line">        at com.beanit.asn1bean.compiler.Compiler.getJavaModelFromAsn1File(Compiler.java:129)</span><br><span class="line">        at com.beanit.asn1bean.compiler.Compiler.main(Compiler.java:106)</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722141434129.png" alt="image-20220722141434129"></p>
+<p><strong>解决方案</strong>：</p>
+<p>虽然报错信息提示是<code>*</code>号，但这里依然是注释引起的问题。可以将该行注释删除。</p>
+<h3 id="类型定义未找到"><a href="#类型定义未找到" class="headerlink" title="类型定义未找到"></a>类型定义未找到</h3><p><strong>错误提示</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 类型定义MlcNumber没有找到</span></span><br><span class="line">Generated code will be saved <span class="keyword">in</span> ./</span><br><span class="line">Parsing <span class="string">&quot;C:\Users\Administrator\Desktop\Zamtel_HW_Msc\2021-01-01\HuaweiMSC_V1_RX.ASN.demo&quot;</span></span><br><span class="line">Generating classes <span class="keyword">for</span> module <span class="string">&quot;HMSC&quot;</span></span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.IllegalStateException: Type definition <span class="string">&quot;MlcNumber&quot;</span> was not found <span class="keyword">in</span> module <span class="string">&quot;HMSC&quot;</span></span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.followAndGetNextTaggedOrUniversalType(BerClassWriter.java:2460)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.followAndGetNextTaggedOrUniversalType(BerClassWriter.java:2436)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.followAndGetNextTaggedOrUniversalType(BerClassWriter.java:2404)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.followAndGetNextTaggedOrUniversalType(BerClassWriter.java:2393)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.isDirectAnyOrChoice(BerClassWriter.java:2478)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.getTag(BerClassWriter.java:465)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.writeSequenceOrSetEncodeFunction(BerClassWriter.java:1259)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.writeSequenceOrSetClass(BerClassWriter.java:839)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.writeConstructedTypeClass(BerClassWriter.java:536)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.translateModule(BerClassWriter.java:236)</span><br><span class="line">        at com.beanit.asn1bean.compiler.BerClassWriter.translate(BerClassWriter.java:176)</span><br><span class="line">        at com.beanit.asn1bean.compiler.Compiler.main(Compiler.java:119)</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722141739266.png" alt="image-20220722141739266"></p>
+<p>可以看到在定义文件中只有类型的引用而没有定义。</p>
+<p><strong>解决方案</strong>：</p>
+<p>只看到使用，没有看到定义。可以暂时定义为NULL，再生成Java试试，如果不报错就继续，如果依然报错，则需要参考华为的文档。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MlcNumber ::= NULL</span><br></pre></td></tr></table></figure>
+
+<h3 id="成功提示"><a href="#成功提示" class="headerlink" title="成功提示"></a>成功提示</h3><p>定义文件全部修改完成后，生成Java代码不报错即表示成功。可以在bin目录下看到对应的Java文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Generated code will be saved <span class="keyword">in</span> ./</span><br><span class="line">Parsing <span class="string">&quot;C:\Users\Administrator\Desktop\Zamtel_HW_Msc\2021-01-01\HuaweiMSC_V1_RX.ASN.demo&quot;</span></span><br><span class="line">Generating classes <span class="keyword">for</span> module <span class="string">&quot;HMSC&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="处理编译错误"><a href="#处理编译错误" class="headerlink" title="处理编译错误"></a>处理编译错误</h2><p>生成的Java文件并不能直接使用，里面有一些编译错误需要修改。常见错误如类名和文件名不一致，字段定义重复等。这些错误与定义文件有关，一般修改定义文件后重新生成Java文件即可。也可以在生成的Java文件中直接重构。推荐修改定义文件后重新生成Java文件。</p>
+<h3 id="类名与文件名不一致"><a href="#类名与文件名不一致" class="headerlink" title="类名与文件名不一致"></a>类名与文件名不一致</h3><p><strong>错误提示</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722092908565.png" alt="image-20220722092908565"></p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722092956962.png" alt="image-20220722092956962"></p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722093023493.png" alt="image-20220722093023493"></p>
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142002679.png" alt="image-20220722142002679"></p>
+<p><strong>解决方案</strong>：</p>
+<p>类型定义只有全大写的VATTYPE定义，但使用时引用了VasType定义。为了更符合Java的命名规范，可以将大写的VASTYPE定义修改为VasType。</p>
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142400290.png" alt="image-20220722142400290"></p>
+<p>定义文件中既有对Portedflag的定义，也有对PortedFlag的定义。PortedFlag定义为ENUMERATED，Portedflag定义为INTEGER。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142512977.png" alt="image-20220722142512977"></p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142542092.png" alt="image-20220722142542092"></p>
+<p><strong>解决方案</strong>：</p>
+<p>显然PortedFlag的定义值覆盖了Portedflag，所以保留PortedFlag，并将所有引用修改为PortedFlag。</p>
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722142742407.png" alt="image-20220722142742407"></p>
+<p><strong>解决方案</strong>：</p>
+<p>SSCode和SsCode都是OCTET STRING，保留更符合Java命名规范的SsCode，并修改所有的引用。</p>
+<h3 id="字段定义重复"><a href="#字段定义重复" class="headerlink" title="字段定义重复"></a>字段定义重复</h3><p><strong>错误提示</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722093901629.png" alt="image-20220722093901629"></p>
+<p>此类型的错误一般是由于定义文件错误而产生的，可以修改定义文件后重新生成Java文件。</p>
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722143130451.png" alt="image-20220722143130451"></p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722143345046.png" alt="image-20220722143345046"></p>
+<p>可以看到MobileOriginated类型中定义了两个translateNumber字段，Tag Number分别是6和245。</p>
+<p>Tag Number为245的还有一个字段mctType，显然应该去掉Tag Number为245的translateNumber。</p>
+<h2 id="处理运行时错误"><a href="#处理运行时错误" class="headerlink" title="处理运行时错误"></a>处理运行时错误</h2><p>编译错误处理完以后就可以开始尝试解析数据文件，解析过程中还会有错误需要处理。常见错误是缺少字段定义，或字段定义类型与实际数据不匹配。可以根据错误提示补充或修正定义文件，并重新生成Java文件。</p>
+<p>替换时要注意根据实际情况选择手动替换不一致的行，或替换整个文件，有时整个文件替换会覆盖已经修改好的内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cn.hutool.core.io.FileUtil;</span><br><span class="line"><span class="keyword">import</span> cn.hutool.core.util.StrUtil;</span><br><span class="line"><span class="keyword">import</span> com.sinovatio.hmsc.CDR;</span><br><span class="line"><span class="keyword">import</span> com.sinovatio.hmsc.Chargingdatarecord;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* decode.java示例 */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Decode</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">filePath</span> <span class="operator">=</span> <span class="string">&quot;C:\\Users\\Administrator\\Desktop\\Zamtel_HW_Msc\\0721\\H20220719876783.dat&quot;</span>;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(filePath));) &#123;</span><br><span class="line">            <span class="type">Chargingdatarecord</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Chargingdatarecord</span>();</span><br><span class="line">            <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> c.decode(is);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (CDR cdr : c.getSequenceCDR().getCDR()) &#123;</span><br><span class="line">                System.out.println(cdr.toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型错误"><a href="#类型错误" class="headerlink" title="类型错误"></a>类型错误</h3><p><strong>错误提示</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722095507894.png" alt="image-20220722095507894"></p>
+<p>这里需要关注几个信息：</p>
+<ul>
+<li><p>primitive: 32</p>
+</li>
+<li><p>tag number: 2</p>
+</li>
+<li><p>Header.java</p>
+</li>
+</ul>
+<p>说明是Header类中Tag Number为2的字段有问题，传入的类型是32，一般是传入的类型与定义类型不一致。</p>
+<p>根据BerTag可以看到，32是CONSTRUCTED，对应ASN.1的SET。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722095828313.png" alt="image-20220722095828313"></p>
+<p>debug可以看到，实际期望的类型是Berg.PRIMITIVE，值为0，而传入的值为32，所以问题是定义和实际数据对不上，那以数据文件为准，修改定义。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722095926071.png" alt="image-20220722095926071"></p>
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722100057076.png" alt="image-20220722100057076"></p>
+<p>Header中Tag Number为2的字段是Extensions类型，找下Extensions类型定义，可以看到被定义为NULL。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722144721192.png" alt="image-20220722144721192"></p>
+<p>修改成SET并重新生成Java文件</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722100549093.png" alt="image-20220722100549093"></p>
+<h3 id="字段未定义"><a href="#字段未定义" class="headerlink" title="字段未定义"></a>字段未定义</h3><p><strong>错误提示</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722101048043.png" alt="image-20220722101048043"></p>
+<p>一样的排查方法，Transit类，Tag Number为160，传入类型为0。</p>
+<p><strong>定义文件</strong>：</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145106378.png" alt="image-20220722145106378"></p>
+<p>查看定义文件，发现Transit类中没有对Tag Number为160的字段进行定义。</p>
+<p>根据华为文档，可以看到Tag Number 159是rateIndication，160应该紧随其后，文档中rateIndication的Tag值为0x9F 81 1F，那Tag Number 160的Tag值应该是0x9F 81 20，对应字段roamingNumber。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145416807.png" alt="image-20220722145416807"></p>
+<p>roamingNumber的类型为ADDRESS，在定义文件中搜索ADDRESS相关的类型。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145533160.png" alt="image-20220722145533160"></p>
+<p>发现有ExternalAddress和AddressString两种，而ExternalAddress最终也指向AddressString，所以先将roamingNumber的类型定义为AddressString。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722145820023.png" alt="image-20220722145820023"></p>
+<p>类似的错误，基本都是定义文件中缺少相关字段，可以对照华为文档补上。</p>
+<h3 id="类型错误2"><a href="#类型错误2" class="headerlink" title="类型错误2"></a>类型错误2</h3><p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722110912075.png" alt="image-20220722110912075"></p>
+<p>第一个类型错误中，临时将Extensions定义为一个不包含任何字段的SET，目前看还是不对。由于华为的文档里也没有描述，只能从命名猜测Extensions为Extension的集合，参考最一开始将SequenceCDR定义为SEQUENCE OF CDR，这里也可以将Extensions定义为SEQUENCE OF Extension。修改定义后重新生成Java文件即可正常解析数据文件。</p>
+<p><img src="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/image-20220722111541552.png" alt="image-20220722111541552"></p>
+<h2 id="测试数据文件"><a href="#测试数据文件" class="headerlink" title="测试数据文件"></a>测试数据文件</h2><p>如果不确定数据文件是否正确，可以先从数据文件dump一个结构文件出来看下，一般数据文件没有问题，都可以正常dump出一个结构文件。如果像赞比亚刚开始数据文件错误，那dump时会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cn.hutool.core.io.FileUtil;</span><br><span class="line"><span class="keyword">import</span> org.bouncycastle.asn1.ASN1InputStream;</span><br><span class="line"><span class="keyword">import</span> org.bouncycastle.asn1.ASN1Primitive;</span><br><span class="line"><span class="keyword">import</span> org.bouncycastle.asn1.util.ASN1Dump;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dump</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">asnFilePath</span> <span class="operator">=</span> <span class="string">&quot;C:\\Users\\Administrator\\Desktop\\Zamtel_HW_Msc\\0721\\H20220719876780.dat&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">outputStrucAndDataFilePath</span> <span class="operator">=</span> asnFilePath + <span class="string">&quot;.dump&quot;</span>;</span><br><span class="line">        <span class="type">ASN1InputStream</span> <span class="variable">ais</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ASN1InputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="keyword">new</span> <span class="title class_">File</span>(asnFilePath)));</span><br><span class="line">        <span class="keyword">while</span> (ais.available() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">ASN1Primitive</span> <span class="variable">obj</span> <span class="operator">=</span> ais.readObject();</span><br><span class="line">            FileUtil.writeUtf8String(ASN1Dump.dumpAsString(obj, <span class="literal">true</span>), <span class="keyword">new</span> <span class="title class_">File</span>(outputStrucAndDataFilePath));</span><br><span class="line">        &#125;</span><br><span class="line">        ais.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>dump需要额外的依赖，artifactId名称需要根据jdk版本来确定，JDK1.8使用bcprov-jdk18on，可以在 <a target="_blank" rel="noopener" href="https://mvnrepository.com/">Maven Repository</a> 里搜索。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.bouncycastle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bcprov-jdk18on<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.71<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><p>正常项目只需要加入以下依赖即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.beanit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>asn1bean<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.13.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.beanit.com/asn1/">https://www.beanit.com/asn1/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/beanit/asn1bean">https://github.com/beanit/asn1bean</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/" data-id="clnws9udn0000kwcmh9k5er2s" data-title="使用Java解析ASN.1" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ASN-1/" rel="tag">ASN.1</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/03/29/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">PLSQL Developer安装及配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/onenote/">onenote</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%BF%B5/">杂念</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASN-1/" rel="tag">ASN.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/" rel="tag">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DISQUS/" rel="tag">DISQUS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Downton-Abbey/" rel="tag">Downton Abbey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Grey-s-Anatomy/" rel="tag">Grey&#39;s Anatomy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/" rel="tag">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Liquid/" rel="tag">Liquid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Miss-Right/" rel="tag">Miss Right?</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPWIND/" rel="tag">PHPWIND</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PLSQL-Developer/" rel="tag">PLSQL Developer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Photographic/" rel="tag">Photographic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tapir/" rel="tag">Tapir</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAMP/" rel="tag">WAMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wedding/" rel="tag">Wedding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E5%BF%B5/" rel="tag">杂念</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ASN-1/" style="font-size: 10px;">ASN.1</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Bootstrap/" style="font-size: 10px;">Bootstrap</a> <a href="/tags/CMD/" style="font-size: 10px;">CMD</a> <a href="/tags/DISQUS/" style="font-size: 10px;">DISQUS</a> <a href="/tags/Downton-Abbey/" style="font-size: 10px;">Downton Abbey</a> <a href="/tags/Grey-s-Anatomy/" style="font-size: 10px;">Grey's Anatomy</a> <a href="/tags/Jekyll/" style="font-size: 20px;">Jekyll</a> <a href="/tags/Liquid/" style="font-size: 10px;">Liquid</a> <a href="/tags/Miss-Right/" style="font-size: 10px;">Miss Right?</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/PHPWIND/" style="font-size: 10px;">PHPWIND</a> <a href="/tags/PLSQL-Developer/" style="font-size: 10px;">PLSQL Developer</a> <a href="/tags/Photographic/" style="font-size: 10px;">Photographic</a> <a href="/tags/Tapir/" style="font-size: 10px;">Tapir</a> <a href="/tags/WAMP/" style="font-size: 15px;">WAMP</a> <a href="/tags/Wedding/" style="font-size: 15px;">Wedding</a> <a href="/tags/%E6%9D%82%E5%BF%B5/" style="font-size: 20px;">杂念</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">六月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">五月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">六月 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/19/2023-10-19-parsing-asn-dot-one-with-java/">使用Java解析ASN.1</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/29/2014-03-29-plsqldeveloper-to-connect-to-remote-oracle/">PLSQL Developer安装及配置</a>
+          </li>
+        
+          <li>
+            <a href="/2013/09/20/2013-09-20-wedding-blessing/">Wedding Blessing</a>
+          </li>
+        
+          <li>
+            <a href="/2013/08/13/2013-08-13-new-job/">新工作</a>
+          </li>
+        
+          <li>
+            <a href="/2013/07/27/2013-07-27-miss-right/">Miss Right?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 从前有个包子他睡着了<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
